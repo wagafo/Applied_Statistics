@@ -1,10 +1,10 @@
 - Class: meta
   Course: Applied Statistics
   Lesson: Matrices, Lists and Data Frames
-  Author: Nick Carchedi
+  Author: Nick Carchedi, modified by Walter Garcia-Fontes
   Type: Standard
-  Organization: JHU Biostat
-  Version: 2.2.0
+  Organization: JHU Biostat, Universitat Pompeu Fabra
+  Version: 2.2.1
 
 - Class: text
   Output: In this lesson, we'll cover matrices and data frames. Both represent 'rectangular' data types, meaning that they are used to store tabular data, with rows and columns.
