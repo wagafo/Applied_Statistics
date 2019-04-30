@@ -8,28 +8,28 @@
 
 - Class: text
   Output: In this lesson, we'll cover matrices, lists and data
-  frames. Matrices and data frames Both represent 'rectangular' data
-  types, meaning that they are used to store tabular data, with rows
-  and columns. Lists are more general, they allow to store a
-  collection of objects, and they can have any format.
+   frames. Matrices and data frames Both represent 'rectangular' data
+   types, meaning that they are used to store tabular data, with rows
+   and columns. Lists are more general, they allow to store a
+   collection of objects, and they can have any format.
 
 - Class: text
-  Output: ONe, as you'll see, is that matrices can only contain a
-  single class of data, while data frames and lists can consist of
-  many different classes of data, and furthermore lists do not need to
-  have tabular form.
+  Output: As you'll see, is that matrices can only contain a
+   single class of data, while data frames and lists can consist of
+   many different classes of data, and furthermore lists do not need to
+   have tabular form.
 
 - Class: cmd_question
   Output: Let's create a vector containing the numbers 1 through 20
-  using the `:` operator, that is 1:20. Store the result in a variable
-  called my_vector. 
+   using the `:` operator, that is 1:20. Store the result in a variable
+   called my_vector. 
   CorrectAnswer: my_vector <- 1:20
   AnswerTests: omnitest(correctExpr='my_vector <- 1:20')
   Hint: To create a vector containing the numbers 1, 2, and 3 (in that
-  order), you could use either c(1, 2, 3) or 1:3. In this case, we
-  want the numbers 1 through 20 stored in a variable called
-  my_vector. Also, remember that you don't need the c() function when
-  using `:`, so just enter my_vector <- 1:20 .
+   order), you could use either c(1, 2, 3) or 1:3. In this case, we
+   want the numbers 1 through 20 stored in a variable called
+   my_vector. Also, remember that you don't need the c() function when
+   using `:`, so just enter my_vector <- 1:20 .
 
 - Class: cmd_question
   Output: View the contents of the vector you just created.
@@ -189,9 +189,9 @@
 
 - Class: cmd_question
   Output: Finally, as announced, lists are a collection of different
-  objects. For instance, we can create a list with my_matrix and
-  my_data, which are two different objects, with 
-  my_list <- list(my_matrix,my_data). Try it now.
+   objects. For instance, we can create a list with my_matrix and
+   my_data, which are two different objects, with 
+   my_list <- list(my_matrix,my_data). Try it now.
   CorrectAnswer: my_list <- list(my_matrix,my_data)
   AnswerTests: omnitest(correctExpr='my_list <- list(my_matrix,my_data)')
   Hint: Just write my_list <- list(my_matrix,my_data).
@@ -204,10 +204,10 @@
   
 - Class: text
   Output: In this lesson, you learned the basics of working with three
-  very important and common data structures -- matrices, lists  and
-  data frames. There's much more to learn and we'll be covering more
-  advanced topics, particularly with respect to data frames, in future
-  lessons. 
+   very important and common data structures -- matrices, lists  and
+   data frames. There's much more to learn and we'll be covering more
+   advanced topics, particularly with respect to data frames, in future
+   lessons. 
 
 
 
