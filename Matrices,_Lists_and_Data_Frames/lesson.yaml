@@ -8,13 +8,13 @@
 
 - Class: text
   Output: In this lesson, we'll cover matrices, lists and data
-   frames. Matrices and data frames Both represent 'rectangular' data
+   frames. Matrices and data frames both represent 'rectangular' data
    types, meaning that they are used to store tabular data, with rows
    and columns. Lists are more general, they allow to store a
    collection of objects, and they can have any format.
 
 - Class: text
-  Output: As you'll see, is that matrices can only contain a
+  Output: As you'll see, matrices can only contain a
    single class of data, while data frames and lists can consist of
    many different classes of data, and furthermore lists do not need to
    have tabular form.
@@ -189,12 +189,12 @@
 
 - Class: cmd_question
   Output: Finally, as announced, lists are a collection of different
-   objects. For instance, we can create a list with my_matrix and
-   my_data, which are two different objects, with 
-   my_list <- list(my_matrix,my_data). Try it now.
-  CorrectAnswer: my_list <- list(my_matrix,my_data)
-  AnswerTests: omnitest(correctExpr='my_list <- list(my_matrix,my_data)')
-  Hint: Just write my_list <- list(my_matrix,my_data).
+   objects. For instance, we can create a list with my_vector, my_matrix and
+   my_data, which are three different objects, with 
+   my_list <- list(my_vector,my_matrix,my_data). Try it now.
+  CorrectAnswer: my_list <- list(my_vector,my_matrix,my_data)
+  AnswerTests: omnitest(correctExpr='my_list <- list(my_vector,my_matrix,my_data)')
+  Hint: Just write my_list <- list(my_vector,my_matrix,my_data).
 
 - Class: cmd_question
   Output: See now what my_list contains by writing it with no arguments.
