@@ -23,8 +23,7 @@
     12 thousands. Define a vector with these values and assign it to
     an object called "val".
   CorrectAnswer: c(8,9,10,11,12)
-  AnswerTests: any_of_exprs('val <- 8:12', 'val <- c(8,9,10,11,12)',
-      val <- 'seq(8,12,1)'
+  AnswerTests: any_of_exprs('val <- 8:12', 'val <- c(8,9,10,11,12)', 'val <- seq(8,12,1)')
   Hint: You have to define a vector that has the values 8, 9, 10,
       11, and 12, and assign it to "val", you can do it using
       different equivalent R expressions, such as "val <- c(8,9,10,11,12)",
