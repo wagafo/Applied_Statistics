@@ -1,0 +1,31 @@
+- Class: meta
+  Course: Applied Statistics
+  Lesson: Discrete Probability Distribution
+  Author: Walter Garcia-Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: R has different functions to work with discrete probability
+    distributions. There are also add-on packages that provide
+    additional functions and features. We will review in this tutorial
+    some of the functions available in base R and some other available
+    in specialized packages.
+
+- Class: cmd_question
+  Output: A discrete probability distribution is just the distribution
+    of values for a variable that can only take discrete values, that
+    is, it is given by these values and their relative
+    frequency. Imagine for instance that we have data the returns of
+    an investment, and that the values can go from 8 thousands (8) to
+    12 thousands (12), that is possible returns can be 8, 9, 10, 11 or
+    12 thousands. Define a vector with these values and assign it to
+    an object called "val".
+    CorrectAnswer: c(8,9,10,11,12)
+    AnswerTests: any_of_exprs('val <- 8:12', 'val <- c(8,9,10,11,12)',
+      val <- 'seq(8,12,1)'
+    Hint: You have to define a vector that has the values 8, 9, 10,
+      11, and 12, and assign it to "val", you can do it using
+      different equivalent R expressions, such as "val <- c(8,9,10,11,12)",
+      "val <- 8:12", or "val <- seq(8,12,1)".
