@@ -28,3 +28,45 @@
       11, and 12, and assign it to "val", you can do it using
       different equivalent R expressions, such as "val <- c(8,9,10,11,12)",
       "val <- 8:12", or "val <- seq(8,12,1)".
+
+- Class: cmd_question
+  Output: Let's now create a vector called "probs" with the relative
+    frequency for each possible return. The corresponding
+    probabilities for 8, 9, 10, 11 and 12 thousands are 0.1, 0.2, 0.4, 0.2
+    and 0.1. Create this vector now.
+  CorrectAnswer: probs <- c(0.1, 0.2,0.4,0.2,0.1)
+  AnswerTests: omnitest(correctExpr='probs <- c(0.1, 0.2,0.4,0.2,0.1)')
+  Hint: You have to define a vector called "probs" with the
+    corresponding probabilities, and you can do it with the command
+    "probs <- c(0.1, 0.2, 0.4, 0.2, 0.1)".
+
+- Class: cmd_question
+  Output: We can now compute different statistics for the probability
+    distribution of the "val" variable. For instance multiplying the
+    vectors "val" and "prob" the distribution, and getting the sum of
+    the resulting elements,  will give us the expectation (mean) of
+    the distribution.  Do it now, without assigning the result to any 
+    object.
+  CorrectAnswer: 10
+  AnswerTests: omnitest(correctVal = 10)
+  Hint: You can enter, for instance, sum(val*probs).
+
+- Class: text
+  Output: There are some other more compact ways to define a
+    probability distribution. For instance, the "distr" package can be
+    used. We have loaded this package already for you.
+
+- Class: cmd_question    
+  Output:  With this package, we could enter the command
+    "X <- DiscreteDistribution(supp=8:12, prob = c(0.1,0.2,0.4,0.2,0.1))"
+    to define the same probability distribution than before. Try it now.
+  Correctanswer: X <- DiscreteDistribution(supp=8:12, prob = c(0.1,0.2,0.4,0.2,0.1))
+  AnswerTests: omnitest(correctExpr='X <- DiscreteDistribution(supp=8:12, prob = c(0.1,0.2,0.4,0.2,0.1))')
+  Hint: You have to enter "X <- DiscreteDistribution(supp=8:12, prob = c(0.1,0.2,0.4,0.2,0.1))".
+
+
+
+
+  
+
+  
