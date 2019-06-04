@@ -23,7 +23,7 @@
     variable.
 
 - Class: text
-  Output: The first task that we can try to check if the distribution
+  Output: The first task that we can try to check is if the distribution
     of points is similar to the normal distribution is to plot a histogram
     to see its form. The normal distribution is mountain shaped. We can
     also superimpose a normal distribution to compare our distribution
@@ -100,7 +100,7 @@
 
 - Class: text
   Output: The final task that we can perform to check for normality of
-    a distribution is compare specific areas of the distribution to check
+    a distribution is to compare specific areas of the distribution to check
     if the frequency that we find in that area is the same as the
     frequency that we have in the normal distribution. For instance,
     according to the 68-95-99.7% rule, in the interval (m - s,
@@ -141,7 +141,7 @@
   Hint: You have to enter "sum(points < m - 3*s) / length(points)".
 
 - Class: cmd_question
-  Output: This is telling us that for the interval "m-3*s" there is
+  Output: This is telling us that for the interval smaller than "m-3*s" there is
     an observed relative frequency of 0%. The expected relative frequency was
     0.00135, that is 0.135%, so it is similar. We can check now other
     intervals. For instance let's check the observed relative frequency of
