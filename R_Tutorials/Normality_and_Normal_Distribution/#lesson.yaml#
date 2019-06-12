@@ -1,0 +1,259 @@
+- Class: meta
+  Course: Data analysis
+  Lesson: Normality and Normal Distribution
+  Author: Walter Garcia-Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: We will now work with the normal distribution in R, on the one hand
+    trying to check if a given distribution is similar to the normal
+    distribution (that is what we call checking normality), and secondly
+    trying to provide percentages for different areas of the normal
+    distribution.
+
+- Class: cmd_question
+  Output: We will work with a variable called "points", which are points
+    scored by Pau Gasol in his rookie season at the NBA (2003-2004).
+    Use the head() function to check the first cases of this variable.
+  CorrectAnswer: head(points)
+  AnswerTests: omnitest(correctExpr='head(points)')
+  Hint: You have to enter "head(points)" to see the first cases of the points
+    variable.
+
+- Class: text
+  Output: The first task that we can try to check is if the distribution
+    of points is similar to the normal distribution is to plot a histogram
+    to see its form. The normal distribution is mountain shaped. We can
+    also superimpose a normal distribution to compare our distribution
+    with an actual normal distribution.
+
+- Class: cmd_question
+  Output: We will need the mean and the standard deviation of the points
+    variable for the plots and various computations later, so let's
+    compute them now. First compute the mean of the points variable
+    with the mean() function and store it in a variable called "m".
+  CorrectAnswer: m <- mean(points)
+  AnswerTests: omnitest(correctExpr='m <- mean(points)')
+  Hint: You have to enter "m <- mean(points)" to store the mean of points
+    in a variable called "m".
+
+- Class: cmd_question
+  Output: Now compute the standard deviation of points with the sd
+    function and store it in a variable called s.
+  CorrectAnswer: s <- sd(points)
+  AnswerTests: omnitest(correctExpr='s <- sd(points)')
+  Hint: You have to enter "s <- sd(points)" to store the standard deviation
+    of points in a variable called "s".
+
+- Class: cmd_question
+  Output: Plot a histogram for the points variable. Ask R to plot
+    a histogram with hist(points,prob=TRUE), which will give relative
+    frequencies in the vertical axis.
+  CorrectAnswer: hist(points,prob=TRUE)
+  AnswerTests: omnitest(correctExpr='hist(points,prob=TRUE)')
+  Hint: You have to enter "hist(points,prob=TRUE)" to get the histogram.
+
+- Class: cmd_question
+  Output: Let's superimpose a normal curve to the histogram for comparison.
+    You can do that with curve(dnorm(x,mean=m,sd=s),add=TRUE).
+  CorrectAnswer: curve(dnorm(x,mean=m,sd=s),add=TRUE)
+  AnswerTests: omnitest(correctExpr='curve(dnorm(x,mean=m,sd=s),add=TRUE)')
+  Hint: You have to enter "curve(dnorm(x,mean=m,sd=s),add=TRUE)" to get a
+    normal curve superimposed to the histogram.
+    
+- Class: text
+  Output: From the plot, we can see that even if the distribution of
+    points is not exactly equal to the normal distribution plot, it
+    is not far away, so the distribution of points could be similar
+    to the normal distribution.
+
+- Class: text
+  Output: To check normality, we will next compute numerical summaries
+    to see if the distribution of the points scored by Pau Gasol
+    during his rookie year is similar to the normal distribution.
+    For this, it is useful to check the skewness of the distribution,
+    since it should be more or less symmetric (the normal distribution
+    is perfectly symmetric) and the kurtosis, which is a measure of the
+    relation between the peak and cues of the distribution.
+
+- Class: cmd_question
+  Output: To obtain the skewness and kurtosis measure we will use
+    the describe() function of the psych package, which has been loaded
+    for you. Apply now this function to the points variable to obtain
+    these measures.
+  CorrectAnswer: describe(points)
+  AnswerTests: omnitest(correctExpr='describe(points)')
+  Hint: You have to enter "describe(points)" to obtain the main summary
+    measures for the points variable.
+
+- Class: text
+  Output: As you can see, the skewness measure is 0.09, so we can say
+    that the distribution is close to symmetric, while the kurtosis
+    measure is equal to -0.11, fairly low, so the distribution has
+    a kurtosis similar to the normal distribution (the formula in the
+    psych package implies that the normal distribution has a kurtosis
+    equal to 0, in some other packages and in Stata the kurtosis is
+    3 for the normal distribution). So in terms of these summary measures
+    the distribution is close to the normal.
+
+- Class: text
+  Output: The final task that we can perform to check for normality of
+    a distribution is to compare specific areas of the distribution to check
+    if the frequency that we find in that area is the same as the
+    frequency that we have in the normal distribution. For instance,
+    according to the 68-95-99.7% rule, in the interval (m - s,
+    m + s) we have 68% of the frequency, so in the interval
+    (m - s, m) we have 34% of the frequency.
+
+- Class: mult_question
+  Output: According to the 68-95-99.7% rule, in the interval (m - 2*s,
+    m - s), that  is the are between 2 standard deviations below the
+    mean and one standard deviation below the mean, what percentage
+    of frequency do we have in the normal distribution?
+  AnswerChoices: 13.5; 95; 68; 27; 34
+  CorrectAnswer: 13.5
+  AnswerTests: word= 13.5
+  Hint: According to the rule, in the interval (m - 2*s, m) we
+    have 95/2 = 47.5%, and in the interval (m -s, m) we have
+    34%, so what do we have in (m - 2*s, m  - s)?
+
+- Class: cmd_question
+  Output: We have prepared a table for you with the approximate frequency
+    you expect to have in the normal distribution
+    according to the 68-95-99.7% rule. That is why we call it "expected
+    frequency". Check the table entering "table_normal" now.
+  CorrectAnswer: table_normal
+  AnswerTests: omnitest(correctExpr='table_normal')
+  Hint: You have to enter "table_normal" to see the frequency in each
+    interval according to the normal 68-95-99.7% rule.
+
+- Class: cmd_question
+  Output: We have to check now what relative frequency we observe in our
+    distribution on these same intervals based on exact multiples of the
+    standard deviation above and below the mean. For instance to check
+    which relative frequency we observe for points smaller than m - 3s.
+    To check this, you can do it with
+    sum(points < m - 3*s) / length(points). Try it!
+  CorrectAnswer: sum(points < m - 3*s) / length(points)
+  AnswerTests: omnitest(correctExpr='sum(points < m - 3*s) / length(points)')
+  Hint: You have to enter "sum(points < m - 3*s) / length(points)".
+
+- Class: cmd_question
+  Output: This is telling us that for the interval smaller than "m-3*s" there is
+    an observed relative frequency of 0%. The expected relative frequency was
+    0.00135, that is 0.135%, so it is similar. We can check now other
+    intervals. For instance let's check the observed relative frequency of
+    the interval "(m, m+s)" now, with the command
+    sum(points > m & points < m + s) / length(points).
+  CorrectAnswer: sum(points > m & points < m + s) / length(points)
+  AnswerTests: omnitest(correctExpr='sum(points > m & points < m + s) / length(points)')
+  Hint: You have to enter "sum(points > m & points < m + s) / length(points)"
+    to check the observed relative frequency between the mean and one standard
+    deviation above the mean.
+
+- Class: cmd_question
+  Output: Comparing the expected frequency of the interval (m,m+s) which is
+    0.34134, with the observed relative frequency that we got equal to
+    0.2941176, we see that we are not very far again. Enter now the command
+    to check the observed relative frequency of the interval (m-2*s,m-s).
+  CorrectAnswer: sum(points > m - 2*s & points < m - s) / length(points)
+  AnswerTests: omnitest(correctExpr='sum(points > m - 2*s & points < m - s) / length(points)')
+  Hint: You have to enter
+    "sum(points > m - 2*s & points < m - s) / length(points)"
+    to check the observed relative frequency between the mean minus 2 standard
+    deviations and the mean minus 1 standard deviation.
+
+- Class: cmd_question
+  Output: The observed relative frequency is 0.1323529 while the expected
+    is 0.1391, we are quite close, so the points distribution is not too
+    different from the normal distribution. You should complete the full
+    table of expected and observed relative frequencies to assess if the
+    points distribution is similar to the normal or not. We have prepared
+    this table for you and called it "table_dist". Enter now "table_dist"
+    and check this table.
+  CorrectAnswer: table_dist
+  AnswerTests: omnitest(correctExpr='table_dist')
+  Hint: You have to enter "table_dist" to check the table with expected and
+    observed relative frequencies.
+
+- Class: text
+  Output: We can check now the "expected" and "observed" columns. We can see
+    that the percentages are not very different. Together with the other checks
+    that we performed, graphically and with the numerical summaries, we can
+    conclude that the distribution of points scored by Gasol in his first
+    rookie season approximately follow a normal distribution.
+    
+- Class: cmd_question
+  Output: We can also perform computations with the normal distribution
+    without having to use a table of the standard normal distribution.
+    For instance to check the percentage of cases falling to the right
+    of z = 2, where z is a standardized value, we use the command
+    pnorm(2,lower.tail= FALSE). Try it now.
+  CorrectAnswer: pnorm(2,lower.tail= FALSE)
+  AnswerTests: omnitest(correctExpr='pnorm(2,lower.tail= FALSE)')
+  Hint: Enter the command "pnorm(2,lower.tail= FALSE)" to check the
+    percentage of cases 
+    in the standard normal distribution to the right of a given value.
+
+- Class: cmd_question
+  Output: To check a value to the left we need to use "lower.tail=TRUE".
+    For instance to check the percentage of cases to the left of z=0,
+    you can enter pnorm(0,lower.tail=TRUE). Give it a try!
+  CorrectAnswer: pnorm(0,lower.tail=TRUE)
+  AnswerTests: omnitest(correctExpr='pnorm(0,lower.tail=TRUE)')
+  Hint: Enter the command "pnorm(0,lower.tail=TRUE)" to get the relative
+    frequency to the left of z=0 in the standard normal distribution.
+
+- Class: cmd_question
+  Output: We got 0.5 exactly because z=0 is the median of the standard normal
+    distribution. You can also check the percentages directly with
+    any normal distribution, it does not need to be standard. For instance
+    to check the percentage of cases above x=7 in a normal distribution with
+    mean equal to 6 and standard deviation equal to 1.5, the command is
+    pnorm(7,mean=6,sd=1.5,lower.tail=FALSE). Try it.
+  CorrectAnswer: pnorm(7,mean=6,sd=1.5,lower.tail=FALSE)
+  AnswerTests: omnitest(correctExpr='pnorm(7,mean=6,sd=1.5,lower.tail=FALSE)')
+  Hint: Enter the command "pnorm(7,mean=6,sd=1.5,lower.tail=FALSE)"
+    to get the relative frequency above 7 in a normal distribution with
+    mean equal to 6 and standard deviation equal to 1.5.
+
+- Class: cmd_question
+  Output: We can also figure a value for a given percentage. For this we
+    have to use the qnorm() function instead of the pnorm() function. Imagine
+    we want to figure out which is the value that leaves 25% of relative
+    frequency to the left in a normal distribution with mean equal to 3 and
+    standard deviation equal to 2. The command is
+    qnorm(0.25,mean=3,sd=2,lower.tail=TRUE). Try this command.
+  CorrectAnswer: qnorm(0.25,mean=3,sd=2,lower.tail=TRUE)
+  AnswerTests: omnitest(correctExpr='qnorm(0.25,mean=3,sd=2,lower.tail=TRUE)')
+  Hint: Enter the command "qnorm(0.25,mean=3,sd=2,lower.tail=TRUE)" to obtain
+    the value that leaves 25% to the left in a normal distribution with mean
+    equal to 3 and standard deviation equal to 2.
+
+- Class: cmd_question
+  Output: Now you are becoming an expert. Give the command to obtain the
+    proportion of frequency to the right of 6 in a normal distribution with
+    mean equal to 5 and standard deviation equal to 1.5.
+  CorrectAnswer: pnorm(6,mean=5,sd=1.5,lower.tail=FALSE)
+  AnswerTests: omnitest(correctExpr='pnorm(6,mean=5,sd=1.5,lower.tail=FALSE)')
+  Hint: Enter the command "pnorm(6,mean=5,sd=1.5,lower.tail=FALSE)"
+    to get the relative frequency above 6 in a normal distribution with
+    mean equal to 5 and standard deviation equal to 1.5.
+
+- Class: cmd_question
+  Output: And now give the command to obtain the value in this same
+    normal distribution (mean=5, standard deviation = 1.5) that leaves
+    35% of the frequency to the left.
+  CorrectAnswer: qnorm(0.35,mean=5,sd=1.5,lower.tail=TRUE)
+  AnswerTests: omnitest(correctExpr='qnorm(0.35,mean=5,sd=1.5,lower.tail=TRUE)')
+  Hint: Enter the command "qnorm(0.35,mean=5,sd=.1.5,lower.tail=TRUE)" to obtain
+    the value that leaves 35% to the left in a normal distribution with mean
+    equal to 5 and standard deviation equal to 1.5.
+
+- Class: text
+  Output: This is all for this lesson! Now you know how to check a
+    distribution for normality and how to do computations with the normal
+    distribution in R.
+    

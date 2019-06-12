@@ -1,0 +1,257 @@
+- Class: meta
+  Course: R Tutorials
+  Lesson: Samples and Confidence Intervals
+  Author: Walter Garcia-Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: Imagine we sample repeatedly from a population that has
+    a normal distribution and we compute the mean of each one of these
+    samples.
+
+- Class: cmd_question
+  Output: Let us first plot a normal distribution with a mean equal to
+    2 and a standard deviation equal to 3. We can do this with the
+    command "plot(Norm(3,2), to.draw.arg=1)" which uses the "distr"
+    library that has been already enabled for you. Enter now this
+    command.
+  CorrectAnswer: plot(Norm(3,2), to.draw.arg=1)
+  AnswerTests: omnitest(correctExpr='plot(Norm(3,2), to.draw.arg=1)')
+  Hint: You have to enter "plot(Norm(3,2), to.draw.arg=1)" to plot a 
+    Normal distribution with mean equal to 3 and standard deviation
+    equal to 2.
+
+- Class: cmd_question
+  Output: Let us now get 10 samples from this normal distribution,
+    each one with a size equal to 20. We can do this with the command
+    "matrix(rnorm(10*20,3,2), nrow=10)". This command
+    gets 10 rows of 20 random normal numbers with mean equal to 3 and standard
+    deviation equal to 2, and puts them in a 10x20 table
+    (matrix). Create now this table and store it in an object called "samples".
+  CorrectAnswer: samples <- matrix(rnorm(10*20,3,2), nrow=10)
+  AnswerTests: omnitest(correctExpr='samples <- matrix(rnorm(10*20,3,2), nrow=10)')  
+  Hint: Enter "samples <- matrix(rnorm(10*20,3,2), nrow=10)" to store 10
+    samples of 20 normal random numbers in a 10x20 table (matrix).
+
+- Class: cmd_question
+  Output: Check now the first sample, by asking R to show you the
+    first row of the table you just created.
+  CorrectAnswer: samples[1,]
+  AnswerTests: omnitest(correctExpr='samples[1,]')
+  Hint: To print the first raw of the matrix, and all its columns, you
+    have to issue the command "samples[1,]".
+
+- Class: cmd_question
+  Output: We generated 10 such samples. For each one of these samples
+    we can compute the mean. This is simply done with the command
+    "rowMeans(samples)". Compute now these means and store the result 
+    in an object called "means".
+  CorrectAnswer: means <- rowMeans(samples)
+  AnswerTests: omnitest(correctExpr='means <- rowMeans(samples)')
+  Hint: You have to enter "means <- rowMeans(samples)".
+
+- Class: cmd_question
+  Output: Let us know represent graphically the distribution of the
+    means that we just obtained. This is the so called sampling
+    distribution of the mean, because we obtained the means by
+    sampling. Recalling the function to obtain a histogram is
+    "hist()", enter now the command to draw a histogram of the means
+    object. Provide also the "freq=FALSE" argument, so that the
+    histogram is represented in relative frequency.
+  CorrectAnswer: hist(means,freq=FALSE)
+  AnswerTests: omnitest(correctExpr='hist(means,freq=FALSE)')
+  Hint: You have to enter "hist(means)".
+
+- Class: text
+  Output: As you can see the distribution looks quite
+    irregular. Theoretically the sampling distribution of the means
+    follows a normal distribution with a mean equal to the population
+    mean (3 in this case) and a standard deviation equal to the
+    population standard deviation divided by the square root of the
+    sample size (that is 2/sqrt(20)= 0.4472136). 
+
+- Class: figure
+  Output: We will overlay
+    now the theoretical sampling distribution, which assumes that
+    a very large sample of means has been drawn, over the distribution
+    you just obtained by sampling only 10 times.
+  Figure: small_samp.R
+  FigureType: new
+
+- Class: figure
+  Output: As you can see, our sample looks quite different from the 
+    theoretical distribution. This is not surprising, as we have
+    drawn only 10 samples. We will obtain now 1000 samples and produce
+    the same figure again.
+  Figure: large_samp.R
+  FigureType: new
+
+- Class: text
+  Output: Now you can see the distribution that we obtain from our
+    larger sample of means looks closer to the theoretical sampling
+    distribution. In conclusion, once we start sampling from a normally
+    distributed population, the distribution of the means of that
+    sample will follow a normal distribution with a known standard deviation.
+    It is not surprising that the distribution of the means of the
+    samples follows a normal distribution, since the underlying population
+    is also normally distributed. But this is a more general result
+    known as the Central Limit Theorem. It says that for any population,
+    no matter how it is distributed, with known mean equal to m and
+    known standard deviation equal to s, if we take n samples the mean
+    of these sample will approach a normal distribution as the number 
+    of samples gets very large with mean equal to the population mean
+    and standard deviation equal to the population standard deviation
+    divided by the square root of the sample size.
+
+- Class: cmd_question
+  Output: Let's try now the same exercise that we did before but
+    with a binomial distribution with p equal to 0.2 and a sample size equal
+    to 20. The command to draw 10 samples with a sample size of 20
+    from this binomial distribution is "matrix(rbinom(10*20,1,0.2),
+    nrow=10)". Create now these samples in an object called
+    "samples".
+  CorrectAnswer: samples <- matrix(rbinom(10*20,1,0.2),nrow=10)
+  AnswerTests: omnitest(correctExpr='samples <- matrix(rbinom(10*20,1,0.2),nrow=10)')
+  Hint: The correct command is "samples < matrix(rbinom(10*20,1,0.2),nrow=10)')".
+
+- Class: cmd_question
+  Output: Now we compute the mean of each sample with the same command
+     as before, that is "rowMeans(samples)". Store the means again in an
+     object called "means".
+  CorrectAnswer: means <- rowMeans(samples)
+  AnswerTests: omnitest(correctExpr='means <- rowMeans(samples)')
+  Hint: You have to enter "means <- rowMeans(samples)".
+
+- Class: cmd_question
+  Output: If we represent a histogram we can see the distribution of the means
+     of the different samples. Try it with "hist(means, freq=FALSE)".
+  CorrectAnswer: hist(means, freq=FALSE)
+  AnswerTests: omnitest(correctExpr='hist(means, freq=FALSE)')
+  Hint: You can get the distribution of the means with "hist(means, freq=FALSE)"
+
+- Class: text  
+  Output: What is the theoretical distribution of the sample mean when
+     the underlying population is distributed with a binomial with
+     p=0.2 and sample size n=20?
+     
+- Class: figure
+  Output: The Central Limit Theorem tells us that the
+     distribution is normal with mean equal to the mean of the
+     binomial distribution (n*p) and standard deviation equal to the
+     standard deviation of the binomial divided by the square root of
+     the sample size n, which simplifies to square root of p*(1-p).
+  Figure: bin_small.R
+  FigureType: new
+
+- Class: text
+  Output: In the picture that you see in the right panel we have overlaid the
+     theoretical sampling distribution with the distribution we
+     obtained with the samples that we drew. As you can see they are
+     quite different, which is reasonable as we only have 10 samples.
+
+- Class: figure
+  Output: Now we have repeated the same exercise with 10000 samples. As
+     you can see from the picture on the right, the distribution of 
+     the means obtained in our 1000 samples looks much closer to the
+     theoretical sampling distribution.
+  Figure: bin_large.R
+  FigureType: New
+  
+- Class: text
+  Output: The Central Limit Theorem is the basis for interval
+     estimation and hypothesis testing. For instance, knowing the
+     sampling distribution of the mean, it can be shown that having
+     a sample of size n, there is 95% confidence that the sample
+     mean will fall in an interval defined by the estimated mean plus
+     and minus the appropriate critical value multiplied by the
+     standard error of the mean (that is the standard deviation of
+     the sampling distribution). The critical value is given by the
+     t-distribution, which approaches the normal distribution as the
+     sample gets large.
+
+- Class: cmd_question
+  Output: Recall that the confidence interval is an estimate
+     of the possible values for the population mean. There is a 5%
+     chance that the confidence interval that we build with the 
+     single sample that we have, misses the population mean. We can
+     simulate this generating a large number of samples based on a
+     distribution with a known population mean, estimating
+     the mean for each sample, constructing a confidence interval for
+     each of these sample means, and checking if the population mean
+     lies within this interval. We will generate a graph for this
+     simulation based on 50 samples of size 25, drawn from a normal
+     population with mean equal to 100 and a standard deviation equal
+     to 10. Generate this graph entering "ci.examp()" (from the
+     "TeachingDemos" package which has been loaded for you).
+  CorrectAnswer: ci.examp()
+  AnswerTests: omnitest(correctExpr='ci.examp()')
+  Hint: Enter "ci.examp()" to generate 50 samples from a known
+     population and construct the corresponding confidence intervals
+     around the mean.
+
+- Class: text
+  Output: The 50 confidence intervals are represented above by
+     horizontal lines, and the respective sample means are denoted by
+     vertical slashes. Confidence 
+     intervals that “cover” the true mean value of 100 are plotted in
+     black; if there is any that fails to cover it will be  plotted in
+     a lighter color. If the number of generated samples
+     were to increase from 50 to 500 to 50000, ... , then we would
+     expect our success rate to approach the exact value of 95%.
+
+- Class: cmd_question
+  Output: A confidence interval is easily constructed in R. We will
+     use one of the R built-in data sets. It is called "mtcars", and
+     it holds data from the 1974 Motor Trend US magazine, comprising
+     fuel consumption and 10 aspects of automobile design and performance
+     for 32 automobiles (1973–74 models). We will use the "wt" variable
+     which shows the weight (in 1000 lbs) of the cars. To see the
+     first 6 observations for this variable enter
+     "head(mtcars$wt)".
+  CorrectAnswer: head(mtcars$wt)
+  AnswerTests: omnitest(correctExpr='head(mtcars$wt)')
+  Hint: Enter "head(mtcars$wt)" to see the first 6 observations of the
+     weight of cars.
+
+- Class: cmd_question
+  Output: We can now compute the mean of this variable, using the
+     mean() function. Do it now.
+  CorrectAnswer: mean(mtcars$wt)
+  AnswerTests: omnitest(correctExpr='mean(mtcars$wt)')
+  Hint: You have to enter "mean(mtcars$wt)".
+
+- Class: cmd_question
+  Output: To construct the 95% confidence interval, the command is
+     "t.test(mtcars$wt,x.conf.level = 0.95)$conf.int". Try it now.
+  CorrectAnswer: t.test(x.conf.level = 0.95)$conf.int
+  AnswerTests: omnitest(correctExpr='t.test(mtcars$wt,x.conf.level = 0.95)$conf.int')
+  Hint: Enter "t.test(mtcars$wt,x.conf.level = 0.95)$conf.int" to obtain a 95%
+     confidence interval around the mean.j
+
+- Class: cmd_question
+  Output: Similarly, we can obtain the confidence interval around an
+     estimated proportion. This corresponds to a population assumed
+     to follow the binomial distribution. Assume for instance that for
+     a given product 40 buyers out of 100 are women, so the estimated
+     proportion of women buying the product is 0.4. This is just
+     a point estimate obtained in our sample, but what is the
+     estimated 95% confidence interval for this proportion? We can
+     compute this confidence interval in R using the command
+     "binom.test(x=40,n=100)$conf.int". Try it now.
+  CorrectAnswer: binom.test(x=40,n=100)$conf.int
+  AnswerTests: omnitest(correctExpr='binom.test(x=40,n=100)$conf.int')
+  Hint: To obtain the 95% confidence interval around the estimated
+     proportion enter "binom.test(x=40,n=100)$conf.int".
+
+- Class: text
+  Output: By default R constructs the 95% confidence interval. If
+     another confidence level is needed, for instance 90%,  we add
+     the argument "conf.level=90" to the above function.
+
+- Class: text
+  Output: This is the end of this tutorial, where the Central Limit
+     Theorem has been demonstrated and we showed how to construct
+     confidence intervals with R.
+     
