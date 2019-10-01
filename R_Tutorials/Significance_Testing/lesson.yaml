@@ -13,7 +13,7 @@
   Output: An important concept in hypothesis testing is the NULL hypothesis, usually denoted as H_0. This is the hypothesis that represents the status_quo and is assumed true. It's a baseline against which you're testing alternative hypotheses, usually denoted by H_a. Statistical evidence is required to reject H_0 in favor of the research or alternative hypothesis. 
 
 - Class: text
-  Output: We'll consider the motivating example from the slides. A respiratory disturbance index (RDI) of more than 30 events / hour is considered evidence of severe sleep disordered breathing (SDB). Suppose that in a sample of 100 overweight subjects with other risk factors for SDB at a sleep clinic, the mean RDI (X') was 32 events / hour with a standard deviation (s) of 10 events / hour.
+  Output: We'll consider the following motivating example. A respiratory disturbance index (RDI) of more than 30 events / hour is considered evidence of severe sleep disordered breathing (SDB). Suppose that in a sample of 100 overweight subjects with other risk factors for SDB at a sleep clinic, the mean RDI (X') was 32 events / hour with a standard deviation (s) of 10 events / hour.
 
 - Class: text
   Output: We want to test the null hypothesis H_0 that mu = 30. Our alternative hypothesis H_a is mu>30. Here mu represents the hypothesized population mean RDI.
@@ -58,7 +58,7 @@
   Output: The probabilities of making these two kinds of errors are related. If you decrease the probability of making a Type I error (rejecting a true hypothesis), you increase the probability of making a Type II error (accepting a false one) and vice versa. 
 
 - Class: mult_question
-  Output: As in the slides, we'll consider an American court of law. The null hypothesis is that the defendant is innocent. If an innocent man is convicted what type of error is this?
+  Output: Consider now an American court of law. The null hypothesis is that the defendant is innocent. If an innocent man is convicted what type of error is this?
   AnswerChoices: Type I; Type II
   CorrectAnswer: Type I
   AnswerTests: omnitest(correctVal='Type I')
@@ -80,7 +80,7 @@
 - Class: cmd_question
   Output: Recall that the standard error of a sample mean is given by the formula s/sqrt(n). Recall in our sleep example we had a sample of 100 subjects, our mean RDI (X') was 32 events / hour with a standard deviation (s) of 10 events / hour. What is the standard error of the mean in this example?
   CorrectAnswer: 1
-  AnswerTests: equiv_val(1)
+  AnswerTests: omnitest(correctVal=1)
   Hint: Divide s by sqrt(n).
 
 - Class: text
@@ -123,7 +123,7 @@
 - Class: cmd_question
   Output: What is the Z score for this example? Recall the Z score is X'-mu divided by the standard error of the mean. In this example X'=32, mu=30 and the standard error is 10/sqrt(100)=1. 
   CorrectAnswer: 2
-  AnswerTests: equiv_val(2)
+  AnswerTests: omnitest(correctVal=2)
   Hint: Divide 2 by 1.
 
 - Class: mult_question
@@ -225,13 +225,13 @@
 - Class: cmd_question
   Output: What is the value of the test statistic (X'-mu)/(s/sqrt(n)) with sample size 16?
   CorrectAnswer: .8
-  AnswerTests: equiv_val(.8)
+  AnswerTests: omnitest(correctVal=.8)
   Hint: Type (32-30)/(10/4) at the command prompt.
 
 - Class: cmd_question
   Output: How many degrees of freedom do we have with a sample size of 16?
   CorrectAnswer: 15
-  AnswerTests: equiv_val(15)
+  AnswerTests: omnitest(correctVal=15)
   Hint: Recall that the number of degrees of freedom is one less than the sample size. Here the sample size is 16.
 
 - Class: cmd_question
@@ -299,7 +299,7 @@
 - Class: cmd_question
   Output: So fs has 1078 rows and 2 columns. The columns, fheight and sheight, contain the heights of a father and his son. Obviously there are 1078 such pairs. We can run t.test on this data in one of two ways. First, we can run it with just one argument, the difference between the heights, say fs$sheight-fs$fheight. OR we can run it with three arguments, the two heights plus the paired argument set to TRUE. Run t.test now using whichever way you prefer.
   CorrectAnswer: t.test(fs$sheight-fs$fheight)
-  AnswerTests: ANY_of_exprs('t.test(fs$sheight-fs$fheight)','t.test(fs$fheight-fs$sheight)','t.test(fs$sheight,fs$fheight,paired=TRUE)','t.test(fs$fheight, fs$sheight,paired=TRUE)')
+  AnswerTests: any_of_exprs('t.test(fs$sheight-fs$fheight)','t.test(fs$fheight-fs$sheight)','t.test(fs$sheight,fs$fheight,paired=TRUE)','t.test(fs$fheight, fs$sheight,paired=TRUE)')
   Hint: Type t.test(fs$sheight-fs$fheight) at the command prompt.
 
 - Class: mult_question
@@ -342,7 +342,7 @@
   Output: Similarly, if a (1-alpha)% interval contains mu_0, then we fail to reject H_0.
 
 - Class: text
-  Output: Let's see how hypothesis testing works with binomial distributions by considering the example from the slides. A family has 8 children, 7 of whom are girls and none are twins. Let the null hypothesis be that either gender is equally likely, like an iid coin flip. 
+  Output: Let's see how hypothesis testing works with binomial distributions by considering an example. A family has 8 children, 7 of whom are girls and none are twins. Let the null hypothesis be that either gender is equally likely, like an independent and fair coin flip. 
 
 - Class: text
   Output: So our H_0 is that p=.5, where p is the probability of a girl. We want to see if we should reject H_0 based on this sample of size 8. Our  H_a is that p>.5, so we'll do a one-sided test, i.e., look at only the right tail of the distribution.  
@@ -359,7 +359,7 @@
 - Class: cmd_question
   Output: So mybin[1]=1.0, meaning that with probability 1 there are at least 0 girls, and mybin[2]=.996 is the probability that there's at least 1 girl out of the 8, and so forth. The probabilities decrease as i increases. What is the least value of i for which the probability is less than .05?
   CorrectAnswer: 8
-  AnswerTests: equiv_val(8)
+  AnswerTests: omnitest(correctVal=8)
   Hint: mybin[7]=.144 and mybin[8]=.035.
 
 - Class: mult_question

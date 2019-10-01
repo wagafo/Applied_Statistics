@@ -13,7 +13,7 @@ mybin <- pbinom(quants,size=8,p=.5,lower.tail=FALSE)
 #get correct paths for plotting
 pathtofile <- function(fileName){
   mypath <- file.path(.get_course_path(),
-  	"Statistical_Inference","Hypothesis_Testing",
+  	"R_Tutorials","Significance_Testing",
                       fileName)
 }
 fxfer <- function(fileName){
