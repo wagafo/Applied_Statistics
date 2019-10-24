@@ -1,0 +1,147 @@
+- Class: meta
+  Course: R Tutorials
+  Lesson: Non Parametric Tests
+  Author: Walter Garcia Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: In this lesson, as the name suggests, we will introduce the
+    so called non-parametric tests. A statistical method is called
+    non-parametric if it makes no assumption on the population
+    distribution or sample size. This is in contrast with most
+    parametric methods in elementary statistics that assume the data is
+    quantitative, the population has a normal distribution and the
+    sample size is sufficiently large.
+
+- Class: text
+  Output: In general, conclusions drawn from non-parametric methods
+    are not as powerful as the parametric ones. However, as
+    non-parametric methods make fewer assumptions, they are more
+    flexible, more robust, and applicable to non-quantitative data.
+
+- Class: text
+  Output: The first non-parametric test we will introduce is the
+    Chi-squared Test of Independence, which applies to the analysis
+    of the relation of two categorical variables. Two random variables
+    x and y are called independent if the probability distribution of
+    one variable is not affected by the presence of another.
+
+- Class: text
+  Output: There are two ways to load the data of the categorical
+    variables, 1) case by case and 2) directly from a contingency table.
+
+- Class: cmd_question
+  Output: We say that we have data case by case when we have the
+    data in a spreadsheet. The first row contains the name of the variables,
+    each row contains data for one individual, and there are at least
+    two columns with each categorical variable that we want to analyze.
+    We have loaded a data frame for you coming from such a spreadsheet
+    named "commuting", containing data of the county where 36 persons live,
+    and the transport mean they use. Enter "commuting" (without quotation
+    marks) to see the data "case by case" for these 36 persons.
+  CorrectAnswer: commuting
+  AnswerTests: omnitest(correctExpr='commuting')
+  Hint: You have to enter "commuting" to see the cases for the categorical
+    variables included in the data frame "mobility".
+
+- Class: cmd_question
+  Output: To obtain the contingency table for this data set, we just
+    use the table() function, giving it the name of the data frame as
+    first arguments. Try it now, assigning the result to an object
+    called "dist".
+  CorrectAnswer: dist <- table(commuting)
+  AnswerTests: omnitest(correctExpr='dist <- table(commuting)')
+  Hint: You have to enter "dist <- table(commuting)" to obtain the contingency
+    table for the categorical variables "county" and "transport" and
+    assign it to an object called "dist".
+
+- Class: cmd_question
+  Output: The table() function shows the absolute frequency of the
+    joint distribution between the two categorical variables. To see
+    the results enter now "dist" (without quotation marks).
+  CorrectAnswer: dist
+  AnswerTests: omnitest(correctExpr='dist')
+  Hint: You have to enter "dist" to see the absolute frequency of the
+    joint distribution of the "county" and "transport" variables.
+
+- Class: cmd_question
+  Output: We can also show the joint distribution in graphical form with
+    a bar plot. We can obtain a bar plot with the barplot() function.
+    The first argument is the table object, and it can have several
+    arguments. Try now for instance barplot(dist,legend=TRUE) to obtain
+    the bar plot for the two variables in stacked form.
+  CorrectAnswer: barplot(dist, legend=TRUE)
+  AnswerTests: omnitest(correctExpr='barplot(dist, legend=TRUE)')
+  Hint: Enter «barplot(dist, legend=TRUE)» to obtain the stacked bar plot.
+
+- Class: cmd_question
+  Output: We have uploaded a data set called "survey" with data from a survey of
+    smoking habit in students. In this survey, the
+    Smoke column records the students smoking habit, while the Exer
+    column records their exercise level. The allowed values in Smoke are
+    "Heavy", "Regul" (regularly), "Occas" (occasionally) and "Never". As
+    for Exer, they are "Freq" (frequently), "Some" and "None". Type
+    "tbl <- table(survey$Smoke, survey$Exer)" to construct the
+    contingency table for this case.
+  CorrectAnswer: tbl <- table(survey$Smoke, survey$Exer)
+  AnswerTests: omnitest(correctExpr='tbl <- table(survey$Smoke, survey$Exer)')
+  Hint: You have to enter "tbl <- table(survey$Smoke, survey$Exer)" to
+    construct the contingency table.
+
+- Class: cmd_question
+  Output: We can see the contingency table by just entering "tbl" at
+    the command prompt. Do it now.
+  CorrectAnswer: tbl
+  AnswerTests: omnitest(correctExpr='tbl')
+  Hint: You have to enter "tbl" to see the contingency table.
+
+- Class: cmd_question
+  Output: We want to test the hypothesis whether the students smoking habit is
+    independent of their exercise level at .05 significance level. We
+    apply the chisq.test function to the contingency table tbl. Try it now.
+  CorrectAnswer: chisq.test(tbl)
+  AnswerTests: omnitest(correctExpr='chisq.test(tbl)')
+  Hint: You have to enter "chisq.test(tbl)" to see the results of the test.
+
+- Class: mult_question
+  Output: Which of the following outcomes would be correct?
+  AnswerChoices: We reject the null H_0; We cannot reject the null H_0
+  CorrectAnswer: We cannot reject the null H_0
+  AnswerTests: omnitest(correctVal='We cannot reject the null H_0')
+  Hint: The P-value is larger than 0.05 so we cannot reject the null hypothesis.
+
+- Class: text
+  Output: The chisq.test function gave a warning message, The warning message found in the solution above is due to the small cell values in the contingency table. To avoid such warning, we combine the second and third columns of tbl, and save it in a new table named ctbl. Then we apply the chisq.test function against ctbl instead.
+
+- Class: cmd_question
+  Output: To combine the cells, we can use the command ctbl <- 
+    cbind(tbl[,"Freq"], tbl[,"None"] + tbl[,"Some"]) . Try it now
+  CorrectAnswer: ctbl <- cbind(tbl[,"Freq"], tbl[,"None"] + tbl[,"Some"])
+  AnswerTests: omnitest(correctExpr='ctbl <- cbind(tbl[,"Freq"], tbl[,"None"] + tbl[,"Some"])')
+  Hint: You have to enter "ctbl - cbind(tbl[,"Freq"], tbl[,"None"] + tbl[,"Some"])".
+
+- Class: cmd_question
+  Output: Now you can see how the new contingency table looks like by
+    just entering "ctbl".
+  CorrectAnswer: ctbl
+  AnswerTests: omnitest(correctExp='ctbl')
+  Hint: You have to enter "ctbl".
+
+- Class: cmd_question
+  Output: You can now try the test again with the chisq.test function.
+  CorrectAnswer: chisq.test(ctbl)
+  AnswerTests: omnitest(correctExpr='chisq.test(ctbl)')
+  Hint: You have to enter "chisq.test(ctbl)".
+
+- Class: mult_question
+  Output: Now the result the test is
+  AnswerChoices: we reject H_0; we fail to reject H_0;
+  CorrectAnswer: we fail to reject H_0
+  AnswerTests: omnitest(correctVal='we fail to reject H_0')
+  Hint: The P-value is large so we cannot reject the null hypothesis
+
+- Class: text  
+  Output: Congrats! Now you know how to perform the chis-square test.
+

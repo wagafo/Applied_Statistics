@@ -167,7 +167,7 @@
 
 - Class: text
   Output: So it's pretty likely (probability .996) that out of 8 children you'll have at most 7 girls. The p value of this two sided test is 2*the smaller of the two one-sided values. In this case the lower value is .035, so 2*.035 is the p-value for this two-sided test. 
-
+  
 - Class: text
   Output: Now a final example using a Poisson distribution. Remember that this is discrete and it involves counts or rates of counts. we will use an example that involves rates of infections in a hospital.
 
