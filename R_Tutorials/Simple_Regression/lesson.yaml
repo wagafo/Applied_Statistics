@@ -202,7 +202,7 @@
 - Class: cmd_question
   Output: To obtain more regression results, we can use the summary() function.
    Use now this function, giving it the object "fit" as argument. Do
-  it know.
+   it know.
   CorrectAnswer: summary(fit)
   AnswerTests: omnitest(correctExpr='summary(fit)')
   Hint: You have to enter "summary(fit)" to obtain a more complete
@@ -218,11 +218,28 @@
   Hint: Check which t-value is large enough or equivalently which
    P-value is low enough to reject the null hypothesis that the
    coefficient is equal to 0.  
-   
+
+- Class: cmd_question
+  Output: A nicer table can be obtained using the "stargazer" package,
+   which has been enabled for you. This package can produce tables
+   in different formats, to include later in reports and papers. The
+   easiest form is "stargazer(fit, type="text") which will produce a nice
+   table in text format. Try it now.
+  CorrectAnswer: stargazer(fit, type="text")
+  AnswerTests: omnitest(correctExpr='stargazer(fit, type="text")')
+  Hint: You have to enter 'stargazer(fit, type="text")' to obtain a nice
+   looking table with the regression output.
+
 - Class: text
-  Output: In the results shown by R you can also get the value for coefficient
-    of determination (also called Multiple R-squared), which is equal
-    to 0.41. and some statistics for the regression residuals.
+  Output: This is the standard way to report regression results. Under
+   the estimated coefficients, the standard error of the coefficient
+   is reported in brackets. The significance of the estimated coefficient
+   is reported using stars so that it can be fast identified.
+
+- Class: text
+  Output: In the results shown by R you can also see the value for coefficient
+    of determination (or R-squared, also called Multiple R-squared),
+    which is equal to 0.41. and some statistics for the regression residuals.
 
 - Class: mult_question
   Output: The value of the R-squared is telling you that
