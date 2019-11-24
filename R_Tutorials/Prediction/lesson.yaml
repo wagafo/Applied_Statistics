@@ -1,4 +1,4 @@
-- Class: meta
+dem- Class: meta
   Course: R Tutorials
   Lesson: Prediction
   Author: Walter Garcia-Fontes (based on http://www.sthda.com/english/articles/40-regression-analysis/166-predict-in-r-model-predictions-and-confidence-intervals/)
@@ -7,10 +7,10 @@
   Version: 1.0.0
 
 - Class: text
-  Output: We start by building a simple linear regression model that
+  Output:We start by building a simple linear regression model that
     predicts the stopping distances of cars on the basis of the speed.
 
-- Class: cmd_question
+- Class: cmd-question
   Output: 'We have uploaded a data frame for you called "cars", that has two
     variables called "dist" (stopping distance) and "speed" (speed of
     the car.) Estimate a regression of "dist" on "speed", and assign
@@ -20,39 +20,29 @@
   Hint: You have to enter "model <- lm(dist~speed, data=cars)" or
     "model <- lm(cars$dist~cars$speed)".
 
-- Class: cmd_question
-  Output: To see the results of the regression, use the summary()
-    function and give "model" as an argument. Do it now.
-  CorrectAnswer: summary(model)
-  AnswerTests: omnitest(correctExpr='summary(model)')
-  Hint: You have to enter "summary(model)" to see the regression results.
-
 - Class: mult_question
-  Output: According to the results in the regression output, and
-    rounding to two decimal points.
+  Output: According to the results in the regression output
   AnswerChoices: the constant is -17.58 and the slope is 3.93; the constant is -3.93 and the slope is 17.58
   CorrectAnswer: the constant is -17.58 and the slope is 3.93
   AnswerTests: omnitest(correctVal='the constant is -17.58 and the slope is 3.93')
-  Hint: The constant value is under "(Intercept)" and the slope is
-    under "sleep".
-
+  Hint: The constant value is under "(Intercept)" and the slope is under "sleep".
 - Class: text
-  Output: 'The linear model equation can be written as follow: "dist =
-    -17.579 + 3.932*speed". Note that, the units of the variable speed
-    and dist are respectively, mph and ft.'
+  Output:The linear model equation can be written as follow: dist =
+    -17.579 + 3.932*speed. Note that, the units of the variable speed
+    and dist are respectively, mph and ft.
 
 - Class: cmd_question
-  Output: Using the above model, we can predict the stopping distance
+  Output: 'Using the above model, we can predict the stopping distance
     for a new speed value. Start by creating a new data frame
     containing, for example, three new speed values, "data.frame(
-    speed = c(12, 19, 24))", assign this data frame to object called
+    speed = c(12, 19, 24)", assign this data frame to object called
     "new.speeds".
   CorrectAnswer: new.speeds <- data.frame(speed = c(12, 19, 24))
   AnswerTests: omnitest(correctExpr='new.speeds <- data.frame(speed = c(12, 19, 24))')
   Hint: You have to enter "new.speeds <- data.frame(speed = c(12, 19, 24))".
 
 - Class: cmd_question
-  Output: You can predict the corresponding stopping distances using
+  Output: 'You can predict the corresponding stopping distances using
     the R function predict() as follows, "predict(model, newdata = new.speeds)".
     Try it now.
   CorrectAnswer: predict(model, newdata = new.speeds)
@@ -61,8 +51,8 @@
     predict distance for the new values of speed.
 
 - Class: mult_question
-  Output: According to the prediction, and rounding to one decimal
-    point, the distance for a value of speed equal to 19 is
+  Output: According to the prediction, the distance for a value of
+    speed equal to 19 is
   AnswerChoices: 29.6 ; 57.1 ; 76.8
   CorrectAnswer: 57.1
   AnswerTests: omnitest(correctVal='57.1')
@@ -71,8 +61,8 @@
 
 - Class: cmd_question
   Output: The confidence interval reflects the uncertainty around the
-    mean predictions. To display the 95% confidence interval around the
-    mean of the prediction, add the argument 'interval = "confidence"'
+    mean predictions. To display the 95% confidence intervals around the
+    mean the predictions, add the argument 'interval = "confidence"'
     to the predict() function that you just used. Do it now.
   CorrectAnswer: predict(model, newdata = new.speeds, interval = "confidence")
   AnswerTests: omnitest(correctExpr='predict(model, newdata = new.speeds, interval = "confidence")')
@@ -81,23 +71,22 @@
     predictions.
 
 - Class: text
-  Output: The output contains three columns. The first one, "fit", contains
+  Output:The output contains three columns. The first one, "fit", contains
     the predicted distance values for the three new speeds.
     "lwr" and "upr" contain the lower and the upper confidence limits
-    for the expected values, respectively. By default the function
-    produces the 95% confidence limits.
+     for the expected values, respectively. By default the function
+     produces the 95% confidence limits.
 
 - Class: mult_question
-  Output: For example, rounding to one decimal point,  the 95%
-    confidence interval associated with a speed of 19 is (51.8,
-    62.4). This means that
+  Output: For example, the 95% confidence interval associated with a
+    speed of 19 is (51.8, 62.4). This means that
   AnswerChoices: according to our model, the average speed of a car
-    with 19 mph will be for sure in an interval ranging between 51.8
-    and 62.4; according to our model, there is 5% chance that the true
-    average speed of a car with 19mph will not be in an interval ranging
-    between 51.8 and 62.4
-  CorrectAnswer: according to our model, there is 5% chance that the true average speed of a car with 19mph will not be in an interval ranging between 51.8 and 62.4
-  AnswerTests: omnitest(correctVal='according to our model, there is 5% chance that the true average speed of a car with 19mph will not be in an interval ranging between 51.8 and 62.4')
+    with 19 mph will be in an interval ranging between 51.8 and 62.4;
+    according to our model, there is 5% chance that the average speed
+    of a car with 19mph will not be in an interval ranging between
+    51.8 and 62.4
+  CorrectAnswer: according to our model, there is 5% change that the true average speed of a car with 19mph will not be in an interval ranging between 51.8 and 62.4
+  AnswerTests: omnitest(correctVal='according to our model, there is 5% change that the true average speed of a car with 19mph will not be in an interval ranging between 51.8 and 62.4')
   Hint: This is a confidence interval for the mean predicted value, so
     there is a 95% chance that the mean distance will be within
     the given interval, and so there is a 5% chance that this interval
@@ -117,12 +106,11 @@
     predictions.
 
 - Class: mult_question
-  Output: For example, rounding to two decimal points, the 95%
-    prediction interval associated with a speed of 19 is (25.76,
-    88.51). This means that
-  AnswerChoices: according to our model, the true speed of a car with 19 mph will be in an interval ranging between 25.76 and 88.51; according to our model, there is 95% chance that the true speed of a car with 19mph will be in an interval ranging between 25.76 and 88.51
+  Output: For example, the 95% prediction interval associated with a
+    speed of 19 is (25.75, 88.5). This means that
+  AnswerChoices: according to our model, the true speed of a car with 19 mph will be in an interval ranging between 25.75 and 88.5; according to our model, there is 95% chance that the true speed of a car with 19mph will be in an interval ranging between 25.76 and 88.5
   CorrectAnswer:
-  AnswerTests: omnitest(correctVal='according to our model, there is 95% chance that the true speed of a car with 19mph will be in an interval ranging between 25.76 and 88.51')
+  AnswerTests: omnitest(correctVal=''according to our model, there is 95% chance that the true speed of a car with 19mph will be in an interval ranging between 25.76 and 88.5)
   Hint: This is a confidence interval for the actual predicted value
     (not the mean, so there is a 95% chance that the true distance
     will be within  the given interval.
@@ -144,24 +132,12 @@
 
 - Class: text
   Output: Which one should we use? The answer to this question depends
-    on the context and the purpose of the analysis. Generally, we are
+    on the context and the purpose of the analysis. Generally, we
     interested in specific individual predictions, so a prediction
     interval would be more appropriate. Using a confidence interval when
     you should be using a prediction interval will greatly underestimate
     the uncertainty in a given predicted value.
 
-- Class: cmd_question
-  Output: To draw the scatterplot with the prediction bands, the "HH"
-    library can be used, which has been uploaded for you. This package
-    has a function called ci.plot(). Giving "model" as an argument, it
-    will draw a scatterplot with the confidence and prediction
-    intervals. Try it now.
-
-  CorrectAnswer: ci.plot(model)
-  AnswerTests: omnitest(correctExpr='ci.plot(model)')
-  Hint: You have to enter "ci.plot(model)" to get a scatterplot with
-    confidence and prediction intervals.
-
 - Class: text
   Output: With this, we finish this tutorial about prediction in the
-    regressions.
+    regression model.
