@@ -11,10 +11,10 @@
     predicts the stopping distances of cars on the basis of the speed.
 
 - Class: cmd_question
-  Output: 'We have uploaded a data frame for you called "cars", that has two
+  Output: We have uploaded a data frame for you called "cars", that has two
     variables called "dist" (stopping distance) and "speed" (speed of
     the car.) Estimate a regression of "dist" on "speed", and assign
-    the result to an object called "model".'
+    the result to an object called "model".
   CorrectAnswer: model <- lm(dist~speed, data=cars)
   AnswerTests: any_of_exprs('model <- lm(dist~speed,data=cars)','model <- lm(cars$dist~cars$speed)')
   Hint: You have to enter "model <- lm(dist~speed, data=cars)" or
