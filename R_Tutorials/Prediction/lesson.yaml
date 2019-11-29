@@ -32,7 +32,7 @@
     and dist are respectively, mph and ft.
 
 - Class: cmd_question
-  Output: 'Using the above model, we can predict the stopping distance
+  Output: Using the above model, we can predict the stopping distance
     for a new speed value. Start by creating a new data frame
     containing, for example, three new speed values, "data.frame(
     speed = c(12, 19, 24)", assign this data frame to object called
@@ -42,7 +42,7 @@
   Hint: You have to enter "new.speeds <- data.frame(speed = c(12, 19, 24))".
 
 - Class: cmd_question
-  Output: 'You can predict the corresponding stopping distances using
+  Output: You can predict the corresponding stopping distances using
     the R function predict() as follows, "predict(model, newdata = new.speeds)".
     Try it now.
   CorrectAnswer: predict(model, newdata = new.speeds)
@@ -103,7 +103,7 @@
   AnswerTests: omnitest(correctExpr='predict(model, newdata = new.speeds, interval = "prediction")')
   Hint: You have to enter "predict(model, newdata = new.speeds,
     interval = "prediction")" to get a confidence interval for the
-    predictions.
+    predicptions.
 
 - Class: mult_question
   Output: For example, the 95% prediction interval associated with a
