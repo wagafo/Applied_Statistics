@@ -10,7 +10,7 @@
   Output:We start by building a simple linear regression model that
     predicts the stopping distances of cars on the basis of the speed.
 
-- Class: cmd-question
+- Class: cmd_question
   Output: 'We have uploaded a data frame for you called "cars", that has two
     variables called "dist" (stopping distance) and "speed" (speed of
     the car.) Estimate a regression of "dist" on "speed", and assign
