@@ -74,8 +74,8 @@
   Output: The output contains three columns. The first one, "fit", contains
     the predicted distance values for the three new speeds.
     "lwr" and "upr" contain the lower and the upper confidence limits
-     for the expected values, respectively. By default the function
-     produces the 95% confidence limits.
+    for the expected values, respectively. By default the function
+    produces the 95% confidence limits.
 
 - Class: mult_question
   Output: For example, the 95% confidence interval associated with a
