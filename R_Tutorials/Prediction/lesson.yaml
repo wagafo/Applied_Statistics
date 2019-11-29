@@ -71,7 +71,7 @@
     predictions.
 
 - Class: text
-  Output:The output contains three columns. The first one, "fit", contains
+  Output: The output contains three columns. The first one, "fit", contains
     the predicted distance values for the three new speeds.
     "lwr" and "upr" contain the lower and the upper confidence limits
      for the expected values, respectively. By default the function
