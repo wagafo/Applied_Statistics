@@ -1,4 +1,4 @@
-dem- Class: meta
+- Class: meta
   Course: R Tutorials
   Lesson: Prediction
   Author: Walter Garcia-Fontes (based on http://www.sthda.com/english/articles/40-regression-analysis/166-predict-in-r-model-predictions-and-confidence-intervals/)
