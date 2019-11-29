@@ -9,7 +9,6 @@
 - Class: text
   Output: We start by building a simple linear regression model that
     predicts the stopping distances of cars on the basis of the speed.
-
 - Class: cmd_question
   Output: We have uploaded a data frame for you called "cars", that has two
     variables called "dist" (stopping distance) and "speed" (speed of
@@ -20,15 +19,23 @@
   Hint: You have to enter "model <- lm(dist~speed, data=cars)" or
     "model <- lm(cars$dist~cars$speed)".
 
+- Class: cmd_question
+  Output: Check now the results of the regression by giving the name
+    of the object that you just created at the command line.
+  CorrectAnswer: model
+  AnswerTests: any_of_exprs('model')
+  Hint: Just enter "model" at the command line.
+
 - Class: mult_question
   Output: According to the results in the regression output
   AnswerChoices: the constant is -17.58 and the slope is 3.93; the constant is -3.93 and the slope is 17.58
   CorrectAnswer: the constant is -17.58 and the slope is 3.93
   AnswerTests: omnitest(correctVal='the constant is -17.58 and the slope is 3.93')
   Hint: The constant value is under "(Intercept)" and the slope is under "sleep".
+
 - Class: text
-  Output:The linear model equation can be written as follow: dist =
-    -17.579 + 3.932*speed. Note that, the units of the variable speed
+  Output: The linear model equation can be written as follow, "dist =
+    -17.579 + 3.932*speed". Note that, the units of the variable speed
     and dist are respectively, mph and ft.
 
 - Class: cmd_question

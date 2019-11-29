@@ -1,299 +1,220 @@
 - Class: meta
   Course: R Tutorials
-  Lesson: Simple Regression
+  Lesson: Multicollinearity
   Author: Walter Garcia-Fontes
   Type: Standard
   Organization: Universitat Pompeu Fabra
   Version: 1.0.0
 
 - Class: text
-  Output: 'In this tutorial we will present the main techniques for the
-    analysis of two numerical variables with R. We will work with a data set
-    that we have already loaded for you. It is a data set on the results of
-    21 students in a midterm and final exam. It has three variables:
-    1) observation number, 2) midterm grade and 3) final grade. The
-    data frame is called "exam".'
-
-- Class: cmd_question
-  Output: Use now the head() function to check the first few observations,
-    as well as the name of the variables included in the data frame.
-  CorrectAnswer: head(exam)
-  AnswerTests: omnitest(correctExpr='head(exam)')
-  Hint: You have to enter "head(exam)" to see the first cases of the variables
-    included in the data frame "exam".
-
-- Class: mult_question
-  Output: In this case, what do you think is more reasonable?
-  AnswerChoices: the final is the dependent variable and the midterm is
-   the explanatory variable; the midterm is the dependent variable and
-   the final is the explanatory variable
-  CorrectAnswer: the final is the dependent variable and the midterm is
-   the explanatory variable
-  AnswerTests: omnitest(correctVal='the final is the dependent variable and the midterm is the explanatory variable')
-  Hint: The midterm grade can be used to predict the final grade.
-
-- Class: cmd_question
-  Output: Since we are going to work for a while with the variables of
-    this data set, it is convenient that we assign them to variables
-    in the current workspace of R, so that we do not have to refer to
-    them all the time using the name of the data frame. So we will
-    start assigning the final variable with "final <- exam$final". Enter
-    this command now.
-  CorrectAnswer: final <- exam$final
-  AnswerTests: omnitest(correctExpr='final <- exam$final')
-  Hint: You have to enter "final <- exam$final" and now you will have a
-    variable called final in the current workspace, so you can refer
-    directly to it in commands without having to use "exam$final".
-
-- Class: cmd_question
-  Output: Assign now the midterm variable in the exam data frame, to
-    a variable called also midterm in the current workspace, similarly
-    to what you did with the final variable.
-  CorrectAnswer: midterm <- exam$midterm
-  AnswerTests: omnitest(correctExpr='midterm <- exam$midterm')
-  Hint: You have to enter "midterm <- exam$midterm" and now you will have a
-    variable called midterm in the current workspace, so you can refer
-    directly to it in commands without having to use "exam$midterm".
+  Output: In this tutorial, you will learn how to test for
+   Multicollinearity using R. Please note that due to the nature of R,
+   there are often many different ways to achieve the same analysis as
+   the R-user community develop different commands and codes or refine
+   existing ones.
 
 - Class: text
-  Output: Before trying to understand the relation between the variables,
-    we have to understand the distribution of each variable separately.
-    To do this we have the usual tools in R, but if we wanted to perform
-    an exhaustive analysis we should use all the tools that we learnt for this.
-    But let's try to understand the main patterns of the distribution for
-    the midterm and final exam.
-
-- Class: cmd_question
-  Output: Use the boxplot() function to get a view of the distribution of
-    the midterm variable. Remember that you can use "midterm" directly
-    without having to refer to the data frame, since we have now a variable
-    in the current R workspace called "midterm".
-  CorrectAnswer: boxplot(midterm)
-  AnswerTests: omnitest(correctExpr='boxplot(midterm)')
-  Hint: You have to enter "boxplot(midterm)" to get a view of the
-    distribution of the midterm variable.
-
-- Class: mult_question
-  Output: According to what we see for the distribution of the midterm
-    variable using the boxplot, we can say that the distribution
-  AnswerChoices: is skewed to the right and has an outlier; is skewed to the
-    left and has an outlier; is symmetrical and does not have outliers
-  CorrectAnswer: is skewed to the right and has an outlier
-  AnswerTests: omnitest(correctVal='is skewed to the right and has an outlier')
-  Hint: Check to what side the boxplot is extended, and if there are any
-    cases marked with a small circle.
-
-- Class: cmd_question
-  Output: Check now the distribution of the final variable, again using
-    the boxplot and using the variable "final" in the current workspace.
-  CorrectAnswer: boxplot(final)
-  AnswerTests: omnitest(correctExpr='boxplot(final)')
-  Hint: You have to enter "boxplot(final)" to get a view of the
-    distribution of the final variable.
-
-- Class: mult_question
-  Output: From what you see in the boxplot for the final variable, you can
-    say that
-  AnswerChoices: the distribution for the final grade is more symmetrical and also has an outlier; the distribution for the final grade is skewed to the right and does not have outliers
-  CorrectAnswer: the distribution for the final grade is more symmetrical and also has an outlier
-  AnswerTests: omnitest(correctVal='the distribution for the final grade is more symmetrical and also has an outlier')
-  Hint: Check if the boxplot has some extension to either side and if there
-    are cases marked with a small circle.
-
-- Class: text
-  Output: You should always perform a thorough analysis of each variable
-   separately before jumping into the analysis of the relations between them.
-
-- Class: cmd_question
-  Output: Once you understand these separate distributions, you can start
-   analyzing the possible relations among them.
-   The first check for the relation between two numerical variables is
-   to check the scatterplot between them.
-   To get a scatter plot between
-   the variable Y in the vertical axis, X in the horizontal axis,
-   "plot(Y~X)" is an appropriate command in R. Try it.
-  CorrectAnswer: plot(final~midterm)
-  AnswerTests: omnitest(correctExpr='plot(final~midterm)')
-  Hint: You have to enter "plot(final~midterm)" to get a scatterplot of the
-    final variable with respect to the midterm variable.
-
-- Class: mult_question
-  Output: The scatterplot gives us a visual idea of the possible relationship
-    between the two variables. In this case what do you think is the best
-    description?
-  AnswerChoices: positive not too strong linear relation; positive very strong linear relation; negative not too strong linear relation; no linear relation
-  CorrectAnswer: positive not too strong linear relation
-  AnswerTests: omnitest(correctVal='positive not too strong linear relation')
-  Hint: Look at the pattern of the points cloud and if it is upward or
-    downward sloping.
+  Output: Collinearity is an association or correlation between two
+   predictor (or independent) variables in a statistical model;
+   multicollinearity is where more than two predictor (or independent)
+   variables are associated. The absence of collinearity or
+   multicollinearity within a dataset is an assumption of a range of
+   statistical tests, including the test of significance for linear
+   regression coefficients.
 
 - Class: figure
-  Output: The scatterplot allows also to identify outliers. Outliers are
-   cases with a large different with respect to the mean of either variable
-   or both. We have marked the outliers for you in the scatterplot. We have
-   also plotted a horizontal line equal to the mean of the final, and a
-   vertical line equal to the mean of the midterm.
-  Figure: figure_outliers.R
-  FigureType: new
+  Output: We have created for you a data set called "data_collinear"
+   with the commands that you can see in the figure on the right.
+  Figure: figure_com.R
+  FigureType: new  
+
+- Class: text
+  Output: If you check the R commands on the right, you can see that
+   two normally distributed variables are created, x1 and x2, and a
+   third variable x3 is created which is an exact linear combination
+   of x1 and x2.
 
 - Class: cmd_question
-  Output: A measure of the possible
-   linear association of two variables is the correlation coefficient.
-   To get the correlation between the X and Y variables in R, the command
-   is cor(X,Y). Use now this command to check the linear correlation
-   between the "midterm" and "final" variable.
-  CorrectAnswer: cor(midterm,final)
-  AnswerTests: any_of_exprs('cor(midterm,final)','cor(final,midterm)')
-  Hint: You have to enter "cor(midterm,final)" to get the linear correlation
-   between the midterm and final grade variables. The order does not matter,
-   you can also write "cor(final,midterm").
-
-- Class: mult_question
-  Output: You should have gotten 0.64029 as the correlation coefficient. This is   telling you that there is
-  AnswerChoices: positive not too strong linear correlation; positive very strong linear correlation; negative not too strong linear correlation; no linear correlation
-  CorrectAnswer: positive not too strong linear correlation
-  AnswerTests: omnitest(correctVal='positive not too strong linear correlation')
-  Hint: Look at the sign of the correlation coefficient and how far away it
-    is from 1 or -1.
+  Output: Compute a linear regression of y on x1, x2 and x3, and save
+   the results in an object called "fit".
+  CorrectAnswer: fit <- lm(y~x1 + x2 + x3)
+  AnswerTests: omnitest(correctExpr='fit <- lm(y~x1 + x2 + x3)')
+  Hint: You have to enter "fit <- lm(y~x1 + x2 + x3)".
 
 - Class: cmd_question
-  Output: The other main tool to describe the relation between the two
-   variables is the regression line. We can ask R to compute the constant
-   and the slope for the regression line between the dependent variable Y
-   and the explanatory variable X with lm(Y~X). Try it now with the midterm
-   and final variable, and assign the result to an object called "fit".
-  CorrectAnswer: fit <- lm(final~midterm)
-  AnswerTests: omnitest(correctExpr='fit <- lm(final~midterm)')
-  Hint: You have to enter "fit <- cor(midterm,final)" to compute the
-   regression line and save the results in an object called fit.
-
-- Class: cmd_question
-  Output: To check the values of the constant and the slope, you just
-   have to enter now the name of the object that we just created. Do it now.
-  CorrectAnswer: fit
-  AnswerTests: omnitest(correctExpr='fit')
-  Hint: You have to enter "fit" to show the constant and the slope of the
-   regression line
-
-- Class: mult_question
-  Output: The slope is showing us
-  AnswerChoices: that for each point a student gets in the midterm, it is predicted he or she will get 1.127 points in the final; that for each point a student gets in the final, it is predicted he or she got 1.127 points in the midterm
-  CorrectAnswer: that for each point a student gets in the midterm, it is predicted he or she will get 1.127 points in the final
-  AnswerTests: omnitest(correctVal='that for each point a student gets in the midterm, it is predicted he or she will get 1.127 points in the final')
-  Hint: The regression line predicts the effect of the explanatory variable
-   (grade in the midterm) on the dependent variable (grade in the final).
-
-- Class: cmd_question
-  Output: It is nice to plot the regression line in the scatterplot. For this,
-   plot again the scatterplot with the "plot(Y~X)" command.
-  CorrectAnswer: plot(final~midterm)
-  AnswerTests: omnitest(correctExpr='plot(final~midterm)')
-  Hint: You have to enter "plot(final~midterm)" to get the scatterplot between
-   final and midterm.
-
-- Class: cmd_question
-  Output: And now, to get the regression line in the scatterplot, we use
-   the command "abline(fit)". Try it now.
-  CorrectAnswer: abline(fit)
-  AnswerTests: omnitest(correctExpr='abline(fit)')
-  Hint: You have to enter "abline(fit)" to obtain the regression line in
-   the scatterplot between final and midterm.
-
-- Class: cmd_question
-  Output: To obtain more regression results, we can use the summary() function.
-   Use now this function, giving it the object "fit" as argument. Do
-   it know.
+  Output: Check now the results using the summary() function on the
+   "fit" object that you just created.
   CorrectAnswer: summary(fit)
   AnswerTests: omnitest(correctExpr='summary(fit)')
-  Hint: You have to enter "summary(fit)" to obtain a more complete
+  Hint: You have to enter "summary(fit)".
+
+- Class: text
+  Output: If you check the results, you can see that R shows all
+   missing values ("NA") for x3. In other words, R decided to exclude
+   this variable. Why is this happening? Since x3 is a linear
+   combination of x1 and x2, x3 is not adding any information that
+   x1 and x2 do not contain, so the linear regression procedure cannot
+   estimate a separate effect on y from x3 once it obtained the
+   effects of x1 and x2. This is what we call "perfect collinearity".
+  
+- Class: cmd_question
+  Output: Check now what happens if we run a regression of y on x1 and
+   x3, that is we exclude x2. Enter directly summary(lm(y~x1 + x3)).
+  CorrectAnswer: summary(lm(y~x1 + x3))
+  AnswerTests: omnitest(correctExpr='summary(lm(y~x1 + x3))')
+  Hint: You have to enter "summary(lm(y~x1 + x3))".  
+
+- Class: text
+  Output: As you can see, now R is able to estimate a coefficient
+   for x3. It is no surprise, as now x1 and x3 provide different
+   information, since x1 and x3 are not an exact linear combination as
+   before. We could also estimate x2 and x3 excluding x1 because of
+   the same reason.
+
+- Class: text
+  Output: Exact collinearity like in this case is an extreme example
+   of collinearity, which occurs in multiple regression when predictor
+   variables are highly correlated. Collinearity is often called
+   multicollinearity, since it is a phenomenon that really only occurs
+   during multiple regression. 
+   
+- Class: text
+  Output: We have uploaded a data set for you called "seapost". The
+   predictors in this dataset are various attributes of car 
+   drivers, such as their height, weight and age. The response variable
+   hipcenter measures the “horizontal distance of the midpoint of the
+   hips from a fixed location in the car in mm.” Essentially, it
+   measures the position of the seat for a given driver. This is
+   potentially useful information for car manufacturers considering
+   comfort and safety when designing vehicles.
+
+- Class: text   
+  Output: We will attempt to fit a model that predicts hipcenter. Two
+   predictor variables are immediately interesting to us. HtShoes and
+   Ht. We certainly expect a person’s height to be highly correlated to
+   their height when wearing shoes. We’ll pay special attention to
+   these two variables when fitting models.
+
+- Class: cmd_question
+  Output: In order to identify potentially collinear variables, we can
+   analyze the correlation between the different variables of the
+   data set. We can first do this visually by obtaining scatterplots
+   between all the possible pairs of variables in the data set. We ca
+   achieve this with the pairs() function, giving as argument the name
+   of the data set. Try it now.
+  CorrectAnswer: pairs(seatpos)
+  AnswerTests: omnitest(correctExpr='pairs(seatpos)')
+  Hint: You have to enter "pairs(seatpos)" to get all possible
+   scatterplots between pairs of variables in the data set.
+
+- Class: cmd_question
+  Output: From the matrix of scatterplots, we can see that the
+   correlation between Ht and HtShoes is extremely high. We can confirm
+   this by getting the correlation matrix. Recall that correlation
+   measures strength and direction of the linear relationship between
+   two variables. Enter round(cor(seatpos),2) to get the correlation
+   matrix rounded to two decimal points.
+  CorrectAnswer: round(cor(seatpos),2)
+  AnswerTests: omnitest(correctExpr='round(cor(seatpos),2)')
+  Hint: You have to enter "round(cor(seatpos),2)" to get all possible
+   correlations between the variables of the data set seapos, rounded
+   to two decimal points.
+
+- Class: cmd_question
+  Output: The correlation between Ht and HtShoes is extremely high. So
+   high, that rounded to two decimal places, it appears to be 1! Unlike
+   exact collinearity, here we can still fit a model with all of the
+   predictors, but what effect does this have? We can refer to all
+   the variables in the data set in the lm() function with a dot, ".",
+   so that lm(hipcenter ~ ., data = seatpos) will regress hipcenter
+   against all the rest of variables. Try it now saving the results
+   into and object called "hip_model".
+  CorrectAnswer: hip_model <- lm(hipcenter ~ ., data = seatpos)
+  AnswerTests: omnitest(correctExpr='hip_model <- lm(hipcenter ~ ., data = seatpos)')
+  Hint: You have to enter "hip_model <- lm(hipcenter ~ ., data =
+   seatpos)" to fit a regression of hipcenter against the rest of the
+   variables of the data set.
+
+- Class: cmd_question
+  Output: Check now the results saved in hip_model using the summary()
+   function.
+  CorrectAnswer: summary(hip_model)
+  AnswerTests: omnitest(correctExpr='summary(hip_model)')
+  Hint: You have to enter "summary(hip_model)" to see the regression output
+  
+- Class: mult_question
+  Output: According to what you see in the regression output
+  AnswerChoices: the explanatory variables are jointly significant; the explanatory variables are not jointly significant; the explanatory variables are individually significant.
+  CorrectAnswer: the explanatory variables are jointly significant
+  AnswerTests: omnitest(correctVal='the explanatory variables are jointly significant')
+  Hint: Check the P-Value for the F-test reported at the bottom of the
    regression output.
 
-- Class: mult_question
-  Output: Now we can see the estimated coefficients, the standard
-   error of the estimated coefficients, the t-ratio, and the P-value
-   for these t-ratios. According to the regression output
-  AnswerChoices: the slope is signficantly different from zero; the slope is not signficantly different from zero; the constant is significantly different from zero
-  CorrectAnswer: the slope is signficantly different from zero
-  AnswerTests: omnitest(correctVal='the slope is signficantly different from zero')
-  Hint: Check which t-value is large enough or equivalently which
-   P-value is low enough to reject the null hypothesis that the
-   coefficient is equal to 0.  
+- Class: text
+  Output: One of the first things we should notice is that the F-test
+   for the regression tells us that the regression is significant,
+   however each individual predictor is not. Another interesting result
+   is the opposite signs of the coefficients for Ht and HtShoes. This
+   should seem rather counter-intuitive. Increasing Ht increases
+   hipcenter, but increasing HtShoes decreases hipcenter? This happens
+   as a result of the predictors being highly correlated. For example,
+   the HtShoe variable explains a large amount of the variation in
+   Ht. When they are both in the model, their effects on the response
+   are lessened individually, but together they still explain a large
+   portion of the variation of hipcenter.
 
 - Class: cmd_question
-  Output: A nicer table can be obtained using the "stargazer" package,
-   which has been enabled for you. This package can produce tables
-   in different formats, to include later in reports and papers. The
-   easiest form is "stargazer(fit, type="text") which will produce a nice
-   table in text format. Try it now.
-  CorrectAnswer: stargazer(fit, type="text")
-  AnswerTests: omnitest(correctExpr='stargazer(fit, type="text")')
-  Hint: You have to enter 'stargazer(fit, type="text")' to obtain a nice
-   looking table with the regression output.
+  Output: The variance inflation factor quantifies the effect of
+   collinearity on the variance of our regression estimates. The vif
+   function from the faraway package calculates the VIFs for each of
+   the predictors of a model. Try it now, giving as an argument the
+   hip_model object where we save the regression results.
+  CorrectAnswer: vif(hip_model)
+  AnswerTests: omnitest(correctExpr='vif(hip_model)')
+  Hint: You have to enter "vif(hip_model)" to see the variance
+   inflation factors.
+
+- Class: text   
+  Output: In practice it is common to say that any VIF greater than 5
+   is cause for concern. So in this example we see there is a huge
+   multicollinearity issue as many of the predictors have a VIF greater
+   than 5.
+
+- Class: cmd_question
+  Output: Run now a shorter model, regressing hipcenter on only
+   Age, Arm and Ht. Save the results in a new object called
+   hip_model_small.
+  CorrectAnswer: hip_model_small <- lm(hipcenter ~ Age + Arm + Ht, data = seatpos)
+  AnswerTests: omnitest(correctExpr='hip_model_small <- lm(hipcenter ~ Age + Arm + Ht, data = seatpos)')
+  Hint: You have to enter "hip_model_small <- lm(hipcenter ~ Age + Arm
+   + Ht, data = seatpos)" to estimate the short model.
+
+- Class: cmd_question
+  Output: Check the variance inflation factors for the short model.
+  CorrectAnswer: vif(hip_model_small)  
+  AnswerTests: omnitest(correctExpr='vif(hip_model_small)  ')
+  Hint: You have to enter "vif(hip_model_small)  " to check the
+   variance inflation factors of the small model.
 
 - Class: text
-  Output: This is the standard way to report regression results. Under
-   the estimated coefficients, the standard error of the coefficient
-   is reported in brackets. The significance of the estimated coefficient
-   is reported using stars so that it can be fast identified.
+  Output: Immediately we see that multicollinearity isn’t an issue
+   here. 
 
 - Class: text
-  Output: In the results shown by R you can also see the value for coefficient
-    of determination (or R-squared, also called Multiple R-squared),
-    which is equal to 0.41. and some statistics for the regression residuals.
+  Output: If the variables of our regression model are jointly
+   significant, the model will be useful for prediction. But if we want
+   to understand the effect of the explanatory variables on our
+   dependent variable, than highly correlated explanatory variables
+   will be a problem. This trade off is mostly true in general. As a
+   model gets more predictors, errors will get smaller and its
+   prediction will be better, but it will be harder to interpret. This
+   is why, if we are interested in explaining the relationship between
+   the predictors and the response, we often want a model that fits
+   well, but with a small number of predictors with little
+   correlation.
 
-- Class: mult_question
-  Output: The value of the R-squared is telling you that
-  AnswerChoices: the midterm grade explains 41% of the variation of the
-    final grades; the final grades explains 41% of the variation of
-    the midterm grades
-  CorrectAnswer: the midterm grade explains 41% of the variation of the
-    final grades
-  AnswerTests: omnitest(correctVal='the midterm grade explains 41% of the variation of the final grades')
-  Hint: The R-squared tells you the percentage of the variation of the final
-    grade that you can explain with the variation of the midterm grade.
-
-- Class: cmd_question
-  Output: Another important piece of diagnosis of the regression line is
-    the residual plot. It allows you to identify anomalies in the relation
-    between the two variables, such as non-linearities or increasing spread.
-    To plot the residuals, we first need to compute them. We can do this
-    with the resid() function of R. Use it with the "fit" object as
-    argument, and assign the results to a new object called fit.res.
-  CorrectAnswer: fit.res <- resid(fit)
-  AnswerTests: omnitest(correctExpr='fit.res <- resid(fit)')
-  Hint: You have to enter "fit.res <- resid(fit)" to compute the residuals
-    and assign the results to a new object called fit.res.
-
-- Class: cmd_question
-  Output: We can now plot the residuals. We will also add a label to the
-    vertical axis with "ylab" and a title to the plot with "main". The command
-    is plot(fit.res~midterm, ylab="Residuals", main="Residual Plot"). Try
-    it now.
-  CorrectAnswer: plot(fit.res~midterm, ylab="Residuals", main="Residual Plot")
-  AnswerTests: omnitest(correctExpr='plot(fit.res~midterm, ylab="Residuals", main="Residual Plot")')
-  Hint: You have to enter "plot(fit.res~midterm, ylab="Residuals", main="Residual Plot")" to draw the regression plot.
-
-- Class: cmd_question
-  Output: It is also convenient to plot
-    a horizontal line at 0, as there are positive and negative residuals,
-    and for the regression analysis to be appropriate, the residuals should
-    be distributed above and below this regression line without any
-    specific pattern. We will plot a horizontal line with abline(0,0). Do
-    it now.
-  CorrectAnswer: abline(0,0)
-  AnswerTests: omnitest(correctExpr='abline(0,0)')
-  Hint: You have to enter "abline(0,0)" to plot a horizontal line.
-
-- Class: cmd_question
-  Output: Another tool to check the residuals is just the histogram. The
-    histogram for the residuals should show a distribution similar
-    to the normal distribution. Get histogram for the residuals, remember
-    that we saved them in an object called "fit.res".
-  CorrectAnswer: hist(fit.res)
-  AnswerTests: omnitest(correctExpr='hist(fit.res)')
-  Hint: You have to enter "hist(fit.res)" to plot a histogram of the  residuals.
-
-- Class: cmd_question
-  Output: In this lesson we have reviewed some basic techniques to
-    analyze simple regression with R.
-    
+- Class: text
+  Output: This finishes this tutorial on multicollinearity in
+   regression.
+  
+  
