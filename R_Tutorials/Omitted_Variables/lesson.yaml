@@ -1,0 +1,169 @@
+- Class: meta
+  Course: R Tutorials
+  Lesson: Omitted Variables
+  Author: Walter Garcia-Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: This tutorial is partly based on section 6.1 of
+   "Econometrics with R" (https://www.econometrics-with-r.org/).
+
+- Class: text
+  Output:  Influences on the dependent variable which are not
+   captured by the model are collected in the error term, which we so
+   far assumed to be uncorrelated with the regressor. However, this
+   assumption is violated if we exclude determinants of the dependent
+   variable which vary with the regressor. This might induce an
+   estimation bias, i.e., the mean of the OLS estimator’s sampling
+   distribution is no longer equal to the true mean. In our example we
+   therefore wrongly estimate the causal effect on test scores of a
+   unit change in the student-teacher ratio, on average. This issue is
+   called omitted variable bias (OVB).
+
+- Class: text
+  Output: Omitted variable bias is the bias in the OLS estimator that
+   arises when the regressor, X  is correlated with an omitted
+   variable. For omitted variable bias to occur, two conditions must
+   be fulfilled. 1. X is correlated with the omitted variable and 2.
+   The omitted variable is a determinant of the dependent variable Y.
+   Together, 1. and 2. result in a violation of the OLS assumption
+   that says that the regressors and the error term are not
+   correlated.
+
+- Class: cmd_question
+  Output: In this tutorial we have uploaded a data set  with
+   information on test performance, school characteristics and student
+   demographic backgrounds for school districts in California. The
+   data set is called "educ". We will work with three variables of
+   this data set. "score" is the result of the a standardized test.
+   "str" is the student/teacher ratio and "english" is the percentage
+   of English learners. Obtain summary statistics of these three
+   variables using the summary() function and giving the data frame as
+   argument.
+  CorrectAnswer: summary(educ)
+  AnswerTests: omnitest(correctExpr='summary(educ)')
+  Hint: You have to enter "summary(educ)" to obtain summaries of the 3
+   variables.
+
+- Class: text
+  Output: Suppose we want to understand the relation between test
+   performance and student/teacher ratio. The larger this ratio,
+   students could get less attention and perform worse. A highly
+   relevant variable could be the percentage of English learners in the
+   school district. It is plausible that the ability to speak, read and
+   write English is an important factor for successful
+   learning. Therefore, students that are still learning English are
+   likely to perform worse in tests than native speakers. Also, it is
+   conceivable that the share of English learning students is bigger in
+   school districts where class sizes are relatively large. Think of
+   poor urban districts where a lot of immigrants live. In these
+   schools student/teacher ratio could be higher. Will the omission of
+   "english" introduce a bias in the effect of student/teacher ratio
+   on test performance?
+
+- Class: cmd_question
+  Output: The two conditions needed for this bias to occur are that
+   the ommitted and included variable are correlated. Check the
+   correlation between "str" and "english".
+  CorrectAnswer: cor(educ$str,educ$english)
+  AnswerTests: any_of_exprs('cor(educ$str,educ$english)','cor(educ$english,educ$str)')
+  Hint: You have to enter "cor(educ$str,educ$english".
+
+- Class: cmd_question
+  Output: The correlation is not high, but these two variables are
+   indeed correlated. The second condition is that the omitted variable
+   is correlated with the dependent variable, that is that "english"
+   is correlated with "score". Verify now if this second condition if
+   satisfied.
+  CorrectAnswer: cor(educ$score,educ$english)
+  AnswerTests: any_of_exprs('cor(educ$score,educ$english)','cor(educ$english,educ$score)')
+  Hint: You have to enter "cor(educ$score,educ$english)".
+
+- Class: text
+  Output: So there should be a bias. The product of these two
+   correlations gives us also the sign of the bias. Since the first
+   condition implies a positive correlation and the second one a
+   negative correlation, the bias is going to be negative.
+
+- Class: cmd_question
+  Output: If we cannot observe the omitted variable, "english", we can
+   only estimate "score" on "str". Do it now.
+  CorrectAnswer: lm(score~str, data=educ)
+  AnswerTests:  any_of_exprs('lm(score~str, data=educ)','lm(educ$score~educ$str)')
+  Hint: You have to enter "lm(score~str, data=educ)".
+
+- Class: text
+  Output: Save the value for the estimated coefficient for "str",
+   -2.28. This result is telling us that the more students per
+   teacher, the worse the average test result. But it could be a
+   biased result according to our previous reasoning.
+
+- Class: cmd_question
+  Output: To obtain the bias, we also need the full regression, that
+   is the regression of "score" on "str" and "english". Do it now.
+  CorrectAnswer: lm(english~str+english, data=educ)
+  AnswerTests:  any_of_exprs('lm(score~str+english, data=educ)','lm(score~english+str, data=educ)','lm(educ$english~educ$str+educ$english)','lm(educ$english~educ$english+educ$str)')
+  Hint: You have to enter "lm(english~str+english, data=educ)".
+
+- Class: text
+  Output: Save the estimated coefficient for "english", -0.6498, since
+   we going to use it later.
+
+- Class: mult_question
+  Output: The bias is simply the different between the coefficient of str when
+   we omit "english" that you saved previously, and the coefficient of
+   str when we include "english" in the previous regression. The bias
+   is
+  AnswerChoices: -1.1787; -2.28; -1.1013; -3.3813
+  CorrectAnswer: -1.1787
+  AnswerTests: omnitest(correctVal='-1.1787')
+  Hint: The bias is -2.28 - (-1.1013) = -1.1787.
+
+- Class: text
+  Output: So the true coefficient should much lower, -1.1787, but
+   omitting "english" we get a biased larger negative effect
+   of -2.28. This is consistent with our first reasoning on the
+   correlations, the bias is negative.
+
+- Class: cmd_question
+  Output: In this case we can compute the bias directly since we have
+   data for the omitted variable. In general, we do not have
+   information on the omitted variable, but if we can reason the size
+   and direction of the two correlations mentioned previously, we can
+   assess the possible size and direction of the bias. In this case,
+   to assess the bias directly, we first compute a regression of the
+   omitted variable (english) on the included variable (str). Do it now.
+  CorrectAnswer: lm(english~str, data=educ)
+  AnswerTests: any_of_exprs('lm(english~str, data=educ)','lm(educ$english~educ$str)')
+  Hint: You have to enter "lm(english~str, data=educ)".
+
+- Class: text
+  Output: Write in a separate paper the value for the coefficient for
+   str, that is 1.814.
+
+- Class: mult_question
+  Output: The bias can also be shown to be equal to the coefficient of
+   the auxiliary regression of "english" on "str" that you saved
+   previously, multiplied to the coefficient of "english" in the full
+   regression. Doing it like this, the bias is equal to
+  AnswerChoices: -1.1787; -2.28; -1.1013; -3.3813
+  CorrectAnswer: -1.1787
+  AnswerTests: omnitest(correctVal='-1.1787')
+  Hint: The bias is -0.6498  * 1.814  = -1.178737, the same value that
+   we obtained before.
+
+- Class: text
+  Output: As we said previously, we cannot usually perform these
+   computations to obtain the bias directly. We have just to be
+   careful when we use regression analysis and think if we could
+   be omitting relevant variables from our analysis. In this case, we
+   can also reason on the size and direction of the bias, if we
+   can assess the possible correlation of the omitted variable with
+   the included variable and the dependent variable.
+
+- Class: text
+  Output: This finishes this tutorial on omitted variables, a
+   potential problem that we always have to take into account when
+   we use regression analysis.
