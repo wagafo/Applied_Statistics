@@ -116,7 +116,7 @@
   Output: The chisq.test function gave a warning message, The warning message found in the solution above is due to the small cell values in the contingency table. To avoid such warning, we combine the second and third columns of tbl, and save it in a new table named ctbl. Then we apply the chisq.test function against ctbl instead.
 
 - Class: cmd_question
-  Output: To combine the cells, we can use the command ctbl <- 
+  Output: To combine the cells, we can use the command ctbl <-
     cbind(tbl[,"Freq"], tbl[,"None"] + tbl[,"Some"]) . Try it now
   CorrectAnswer: ctbl <- cbind(tbl[,"Freq"], tbl[,"None"] + tbl[,"Some"])
   AnswerTests: omnitest(correctExpr='ctbl <- cbind(tbl[,"Freq"], tbl[,"None"] + tbl[,"Some"])')
@@ -142,6 +142,5 @@
   AnswerTests: omnitest(correctVal='we fail to reject H_0')
   Hint: The P-value is large so we cannot reject the null hypothesis
 
-- Class: text  
+- Class: text
   Output: Congrats! Now you know how to perform the chis-square test.
-
