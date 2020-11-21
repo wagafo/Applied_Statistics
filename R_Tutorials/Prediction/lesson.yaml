@@ -135,10 +135,10 @@
 
 - Class: text
   Output: Which one should we use? The answer to this question depends
-    on the context and the purpose of the analysis. Generally, we
+    on the context and the purpose of the analysis. Generally, we are
     interested in specific individual predictions, so a prediction
     interval would be more appropriate. Using a confidence interval when
-    you should be using a prediction interval will greatly underestimate
+    you should be using a prediction interval will greatly underestimates
     the uncertainty in a given predicted value.
 
 - Class: text
