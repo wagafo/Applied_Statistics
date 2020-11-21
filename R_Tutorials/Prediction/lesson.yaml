@@ -87,10 +87,9 @@
 - Class: mult_question
   Output: For example, the 95% confidence interval associated with a
     speed of 19 is (51.8, 62.4). This means that
-  AnswerChoices: according to our model, the average true speed of a car with 19 mph will be in an interval ranging between 51.8 and 62.4;
-    according to our model, there is 5% chance that the true average speed of a car with 19mph will not be in an interval ranging between 51.8 and 62.4
-  CorrectAnswer: according to our model, there is 5% change that the true average speed of a car with 19mph will not be in an interval ranging between 51.8 and 62.4
-  AnswerTests: omnitest(correctVal='according to our model, there is 5% change that the true average speed of a car with 19mph will not be in an interval ranging between 51.8 and 62.4')
+  AnswerChoices: according to our model, the average true speed of a car with 19 mph will be in an interval ranging between 51.8 and 62.4; according to our model, there is 5% chance that the true average speed of a car with 19mph will not be in an interval ranging between 51.8 and 62.4
+  CorrectAnswer: according to our model, there is 5% chance that the true average speed of a car with 19mph will not be in an interval ranging between 51.8 and 62.4
+  AnswerTests: omnitest(correctVal='according to our model, there is 5% chance that the true average speed of a car with 19mph will not be in an interval ranging between 51.8 and 62.4')
   Hint: This is a confidence interval for the mean predicted value, so
     there is a 95% chance that the mean distance will be within
     the given interval, and so there is a 5% chance that this interval
