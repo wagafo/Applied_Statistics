@@ -112,7 +112,7 @@
   Output: For example, the 95% prediction interval associated with a
     speed of 19 is (25.75, 88.5). This means that
   AnswerChoices: according to our model, the true speed of a car with 19 mph will be in an interval ranging between 25.75 and 88.5; according to our model, there is 95% chance that the true speed of a car with 19mph will be in an interval ranging between 25.76 and 88.5
-  CorrectAnswer:
+  CorrectAnswer: according to our model, there is 95% chance that the true speed of a car with 19mph will be in an interval ranging between 25.76 and 88.5
   AnswerTests: omnitest(correctVal=''according to our model, there is 95% chance that the true speed of a car with 19mph will be in an interval ranging between 25.76 and 88.5)
   Hint: This is a confidence interval for the actual predicted value
     (not the mean, so there is a 95% chance that the true distance
