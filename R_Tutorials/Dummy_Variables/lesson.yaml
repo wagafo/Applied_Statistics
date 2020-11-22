@@ -42,7 +42,7 @@
 - Class: cmd_question
   Output: So this dataset contains 72 counts, each associated with a particular different spray. The counts are in the first column and a letter identifying the spray in the second. To save you some typing we've created 6 arrays with just the count data for each spray. The arrays have the names sx, where x is A,B,C,D,E or F. Type one of the names (your choice) of these arrays to see what we're talking about.
   CorrectAnswer: sA
-  AnswerTests: ANY_of_exprs('sA','sB','sC','sD','sE','sF')
+  AnswerTests: any_of_exprs('sA','sB','sC','sD','sE','sF')
   Hint: Type sB at the R prompt.
 
 - Class: cmd_question
