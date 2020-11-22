@@ -57,7 +57,7 @@
    different types of dummy variables.
 
 - Class: cmd_question
-  Output: Use the R function sapply to find out the classes of the columns of the data.
+  Output: Use the R function sapply to find out the classes of the columns of the data, that is sapply(InsectSprais,class).
   CorrectAnswer: sapply(InsectSprays,class)
   AnswerTests: omnitest(correctExpr='sapply(InsectSprays,class)')
   Hint: Type "sapply(InsectSprays,class)" at the R prompt.
