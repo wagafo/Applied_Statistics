@@ -1,4 +1,4 @@
-dem- Class: meta
+- Class: meta
   Course: R Tutorials
   Lesson: Dummy Variables
   Author: Swirl Coders
@@ -55,7 +55,7 @@ dem- Class: meta
   Output: It's not surprising that with 72 counts we'd have 12 count
    for each of the 6 sprays. In this tutorial we will learn how to use
    different types of dummy variables.
-   
+
 - Class: cmd_question
   Output: Use the R function sapply to find out the classes of the columns of the data.
   CorrectAnswer: sapply(InsectSprays,class)
@@ -64,7 +64,7 @@ dem- Class: meta
 
 - Class: text
   Output: The class of the second "spray" column is factor. A factor
-   in R is a categorical variable. These data have 6 factors so we need 6 dummy variables. Each will indicate if a particular outcome (a count) is associated with a specific factor or category (insect spray). 
+   in R is a categorical variable. These data have 6 factors so we need 6 dummy variables. Each will indicate if a particular outcome (a count) is associated with a specific factor or category (insect spray).
 
 - Class: cmd_question
   Output: Using R's lm function, generate the linear model in which count is the dependent variable and spray is the independent. Recall that in R formula has the form y ~ x, where y depends on the predictor x. The data set is InsectSprays. Store the model in the variable fit.
@@ -158,7 +158,7 @@ dem- Class: meta
   AnswerTests: omnitest(correctExpr='summary(fit2)$coef')
   Hint: Type "summary(fit2)$coef" at the R prompt.
 
-- Class: mult_question  
+- Class: mult_question
   Output: According to this new model what is the mean of spray2C?
   AnswerChoices: 2.083333; 12.416667; 14.583333; The model doesn't tell me.
   CorrectAnswer: 2.083333
@@ -172,7 +172,7 @@ dem- Class: meta
   Hint: Type "mean(sC)" at the R prompt.
 
 
-- Class: mult_question  
+- Class: mult_question
   Output: According to this new model what is the mean of spray2A?
   AnswerChoices: 14.50000; 12.416667; 14.583333; I don't have a clue
   CorrectAnswer: 14.50000
@@ -180,7 +180,7 @@ dem- Class: meta
   Hint: Recall that when there is an intercept, the mean of a level that's not the reference, is the intercept + the coefficient (or estimate) of that level, in this case spray2a, so you'll have to add together two numbers. Alternatively, just look back and see what the mean was for the original model.
 
 - Class: text
-  Output: Remember that with this model sprayC is the reference group, so the t-test statistics (shown in column 3 of the summary coefficients) compare the other sprays to sprayC. These can be computed by hand using the Estimates and standard error from the original model (fit) which used sprayA as the references. 
+  Output: Remember that with this model sprayC is the reference group, so the t-test statistics (shown in column 3 of the summary coefficients) compare the other sprays to sprayC. These can be computed by hand using the Estimates and standard error from the original model (fit) which used sprayA as the references.
 
 - Class: cmd_question
   Output: We will compute the spray2B t value.  Subtract fit's sprayC coefficient (fit$coef[3]) from sprayB's (fit$coef[2]) and divide by the standard error which we saw was 1.6011. The result is spray2B's t value. Do this now.
@@ -190,4 +190,4 @@ dem- Class: meta
 
 - Class: text
   Output: With this we finish this introduction on the use of R for
-   dummy regressions.  
+   dummy regressions.
